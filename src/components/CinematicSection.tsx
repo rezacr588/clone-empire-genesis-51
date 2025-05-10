@@ -8,12 +8,13 @@ const CinematicSection = () => {
       
       {/* Cinematic background with subtle parallax effect */}
       <div 
-        className="absolute inset-0 bg-empire-darker opacity-70"
+        className="absolute inset-0 bg-empire-darker opacity-50"
         style={{ 
-          backgroundImage: `url('https://source.unsplash.com/1531297484001-80022131f5a1')`,
+          backgroundImage: `url('/lovable-uploads/9d02690c-9939-4035-91b9-8bb8dbd0e978.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
-          backgroundAttachment: 'fixed'
+          backgroundBlendMode: 'luminosity',
+          filter: 'blur(8px)'
         }}
       ></div>
       

@@ -5,6 +5,7 @@ import Hero from "@/components/Hero";
 import TrustedBy from "@/components/TrustedBy";
 import Features from "@/components/Features";
 import CinematicSection from "@/components/CinematicSection";
+import AIClonesShowcase from "@/components/AIClonesShowcase";
 import Pricing from "@/components/Pricing";
 import HowItWorks from "@/components/HowItWorks";
 import Experience from "@/components/Experience";
@@ -25,6 +26,7 @@ const Index = () => {
         <TrustedBy />
         <Features />
         <CinematicSection />
+        <AIClonesShowcase />
         <HowItWorks />
         <Pricing />
         <Experience />
