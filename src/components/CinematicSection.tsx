@@ -24,15 +24,15 @@ const CinematicSection = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-5xl font-semibold mb-8 leading-tight text-white">
-            "You don't hire <span className="text-gradient bg-gradient-to-r from-white via-empire-red to-white">employees</span>.
+            "Your voice doesn't need a <span className="text-gradient bg-gradient-to-r from-white via-empire-red to-white">body</span>.
             <br />
-            You deploy <span className="text-empire-red">Clones</span>."
+            It needs an <span className="text-empire-red">Empire</span>."
           </h2>
           
           <div className="w-16 h-px bg-empire-red/50 mx-auto mb-8"></div>
           
           <p className="text-lg md:text-xl text-empire-light max-w-2xl mx-auto">
-            Clone agents that represent your business 24/7, never sleep, never take vacations, and operate at scale.
+            Voice-powered AI agents that represent your business 24/7, never sleep, never take vacations, and operate at scale.
           </p>
         </div>
       </div>

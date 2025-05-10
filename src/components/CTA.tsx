@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { ChevronRight, GitMerge } from 'lucide-react';
+import { ChevronRight, Phone } from 'lucide-react';
 
 const CTA = () => {
   return (
@@ -17,11 +17,11 @@ const CTA = () => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-empire-darker border border-empire-red/30 mb-8">
-            <GitMerge className="h-7 w-7 text-empire-red" />
+            <Phone className="h-7 w-7 text-empire-red" />
           </div>
           
           <h2 className="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-            Ready to <span className="text-empire-red">Clone</span> yourself?
+            Ready for your <span className="text-empire-red">AI Voice Agent</span>?
           </h2>
           
           <p className="text-lg md:text-xl text-empire-light max-w-2xl mx-auto mb-10">
@@ -42,7 +42,7 @@ const CTA = () => {
               className="border-empire-medium bg-empire-charcoal/50 hover:bg-empire-charcoal/70 text-white py-6 px-8 rounded-lg text-lg flex items-center gap-2"
               size="lg"
             >
-              Build My Clone
+              Deploy My Voice Agent
             </Button>
           </div>
         </div>
