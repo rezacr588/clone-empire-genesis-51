@@ -8,40 +8,35 @@ const Features = () => {
       title: "Appointment Setter Clone",
       description: "Book meetings around the clock without human involvement. Prospect, qualify, and schedule – all through AI.",
       icon: Calendar,
-      color: "bg-gradient-to-br from-sky-400/10 to-indigo-500/10",
-      border: "border-sky-500/20",
-      iconClass: "text-sky-400"
+      color: "bg-empire-darker border-empire-red/20",
+      iconClass: "text-empire-red"
     },
     {
       title: "AI Sales Closer",
       description: "Handle objections, present solutions, and close deals using voice that sounds just like you or your best salesperson.",
       icon: User,
-      color: "bg-gradient-to-br from-amber-400/10 to-orange-500/10",
-      border: "border-amber-500/20",
-      iconClass: "text-amber-400"
+      color: "bg-empire-darker border-empire-red/20",
+      iconClass: "text-empire-red"
     },
     {
       title: "Customer Success Agent",
       description: "Support tickets, product onboarding, and account management handled by AI clones that know your business inside out.",
       icon: HeadphonesIcon,
-      color: "bg-gradient-to-br from-emerald-400/10 to-green-500/10",
-      border: "border-emerald-500/20",
-      iconClass: "text-emerald-400"
+      color: "bg-empire-darker border-empire-red/20",
+      iconClass: "text-empire-red"
     },
     {
       title: "Cold Calling Agent",
       description: "Scale outreach with voice AI that can have natural conversations, qualify leads, and book meetings.",
       icon: Phone,
-      color: "bg-gradient-to-br from-violet-400/10 to-purple-500/10",
-      border: "border-violet-500/20",
-      iconClass: "text-violet-400"
+      color: "bg-empire-darker border-empire-red/20",
+      iconClass: "text-empire-red"
     },
     {
       title: "Personalized AI Voice Assistant",
       description: "Custom agent built for your unique needs - from handling specialized workflows to executing complex business processes.",
       icon: Bot,
-      color: "bg-gradient-to-br from-empire-red/10 to-rose-500/10",
-      border: "border-empire-red/20",
+      color: "bg-empire-darker border-empire-red/20",
       iconClass: "text-empire-red"
     }
   ];
@@ -63,7 +58,7 @@ const Features = () => {
           {cloneTypes.map((clone, index) => (
             <div
               key={index}
-              className={`rounded-xl p-6 ${clone.color} border ${clone.border} backdrop-blur-sm transition-all hover:-translate-y-1 duration-300 h-full flex flex-col`}
+              className={`rounded-xl p-6 ${clone.color} border border-empire-red/20 backdrop-blur-sm transition-all hover:-translate-y-1 duration-300 h-full flex flex-col`}
             >
               <div className={`rounded-full w-12 h-12 flex items-center justify-center mb-5 ${clone.iconClass} bg-empire-darkest/50`}>
                 <clone.icon size={24} />
