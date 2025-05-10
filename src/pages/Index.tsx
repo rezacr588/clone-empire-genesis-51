@@ -1,12 +1,36 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Hero from "@/components/Hero";
+import TrustedBy from "@/components/TrustedBy";
+import Features from "@/components/Features";
+import CinematicSection from "@/components/CinematicSection";
+import Pricing from "@/components/Pricing";
+import HowItWorks from "@/components/HowItWorks";
+import Experience from "@/components/Experience";
+import CTA from "@/components/CTA";
+import Footer from "@/components/Footer";
 
 const Index = () => {
+  useEffect(() => {
+    // Update document title
+    document.title = "The Clone Empire | Automation. Intelligence. Empire.";
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="bg-empire-darkest text-white min-h-screen">
+      <Navbar />
+      <main>
+        <Hero />
+        <TrustedBy />
+        <Features />
+        <CinematicSection />
+        <HowItWorks />
+        <Pricing />
+        <Experience />
+        <CTA />
+      </main>
+      <Footer />
     </div>
   );
 };
