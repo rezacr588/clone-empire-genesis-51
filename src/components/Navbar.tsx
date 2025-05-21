@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { ThemeToggle } from './ThemeToggle';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -33,41 +34,45 @@ const Navbar = () => {
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-empire-darker/80 glass-effect backdrop-blur-md py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-empire-darker/80 light-mode:bg-white/80 glass-effect backdrop-blur-md py-3' : 'bg-transparent py-5'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center">
-          <Link to="/" className="text-xl font-semibold tracking-tight text-white flex items-center">
-            <span className="text-empire-cyan">The</span>
-            <span className="ml-2">Clone Empire</span>
+          <Link to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/d1821810-1eb1-4bcc-9999-2db5692580f3.png" 
+              alt="The Clone Empire" 
+              className="h-8 md:h-10"
+            />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <Link to="/features" className={`text-sm hover:text-white transition-colors ${isActive('/features')}`}>
+          <Link to="/features" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/features')}`}>
             Clone Types
           </Link>
-          <a href="#how-it-works" className="text-sm text-empire-silver hover:text-white transition-colors">
+          <a href="#how-it-works" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
             How It Works
           </a>
-          <a href="#pricing" className="text-sm text-empire-silver hover:text-white transition-colors">
+          <a href="#pricing" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
             Packages
           </a>
-          <a href="#experience" className="text-sm text-empire-silver hover:text-white transition-colors">
+          <a href="#experience" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
             Experience
           </a>
-          <Link to="/about" className={`text-sm hover:text-white transition-colors ${isActive('/about')}`}>
+          <Link to="/about" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/about')}`}>
             About
           </Link>
-          <Link to="/contact" className={`text-sm hover:text-white transition-colors ${isActive('/contact')}`}>
+          <Link to="/contact" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/contact')}`}>
             Contact
           </Link>
+          <ThemeToggle />
           <Button 
             variant="ghost" 
             size="sm" 
-            className="ml-2 bg-empire-charcoal text-white hover:bg-empire-charcoal/80"
+            className="ml-2 bg-empire-charcoal light-mode:bg-gray-200 text-white light-mode:text-empire-dark hover:bg-empire-charcoal/80 light-mode:hover:bg-gray-300"
           >
             Sign In
           </Button>
@@ -80,12 +85,13 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <div className="flex md:hidden">
+        <div className="flex md:hidden items-center gap-2">
+          <ThemeToggle />
           <Button 
             variant="ghost" 
             size="icon" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="text-white"
+            className="text-white light-mode:text-empire-dark"
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </Button>
@@ -94,41 +100,41 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-empire-darker/95 glass-effect backdrop-blur-md absolute w-full">
+        <div className="md:hidden bg-empire-darker/95 light-mode:bg-white/95 glass-effect backdrop-blur-md absolute w-full">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
             <Link 
               to="/features" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               Clone Types
             </Link>
             <a 
               href="#how-it-works" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               How It Works
             </a>
             <a 
               href="#pricing" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               Packages
             </a>
             <a 
               href="#experience" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               Experience
             </a>
             <Link 
               to="/about" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               About
             </Link>
             <Link 
               to="/contact" 
-              className="text-empire-silver hover:text-white transition-colors py-2"
+              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
             >
               Contact
             </Link>
@@ -136,7 +142,7 @@ const Navbar = () => {
               <Button 
                 variant="ghost" 
                 size="sm" 
-                className="w-full justify-center bg-empire-charcoal text-white hover:bg-empire-charcoal/80"
+                className="w-full justify-center bg-empire-charcoal light-mode:bg-gray-200 text-white light-mode:text-empire-dark hover:bg-empire-charcoal/80 light-mode:hover:bg-gray-300"
               >
                 Sign In
               </Button>

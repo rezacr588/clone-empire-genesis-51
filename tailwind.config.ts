@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -75,6 +74,7 @@ export default {
                     medium: "#667781",     // Medium text/accents
                     charcoal: "#1A1F2C",   // Charcoal for cards
                     silver: "#EAEAEA",     // Silver for text
+                    red: "#ED1E79",        // Red accent
                 }
 			},
 			borderRadius: {
