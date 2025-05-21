@@ -63,16 +63,18 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-                // Empire colors
+                // Empire colors with Vision Pro inspiration
                 empire: {
-                    red: "#ea384c",
-                    dark: "#111111",
-                    darker: "#0a0a0a",
-                    darkest: "#050505",
-                    light: "#888888",
-                    medium: "#555555",
-                    charcoal: "#222222",
-                    silver: "#cccccc",
+                    cyan: "#1EAEDB",       // Primary neon cyan
+                    darkCyan: "#0F87A7",   // Darker cyan for hover states
+                    lightCyan: "#33C3F0",  // Lighter cyan for highlights
+                    dark: "#0A0A0F",       // Deep space dark
+                    darker: "#06060A",     // Deeper dark for backgrounds
+                    darkest: "#030305",    // Almost black
+                    light: "#AABBC3",      // Light text
+                    medium: "#667781",     // Medium text/accents
+                    charcoal: "#1A1F2C",   // Charcoal for cards
+                    silver: "#EAEAEA",     // Silver for text
                 }
 			},
 			borderRadius: {
@@ -124,6 +126,14 @@ export default {
                     '50%': {
                         opacity: '0.9'
                     }
+                },
+                'float': {
+                    '0%, 100%': {
+                        transform: 'translateY(0)'
+                    },
+                    '50%': {
+                        transform: 'translateY(-10px)'
+                    }
                 }
 			},
 			animation: {
@@ -131,12 +141,14 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
                 'fade-in': 'fade-in 0.6s ease-out',
                 'slide-up': 'slide-up 0.8s ease-out',
-                'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out'
+                'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out',
+                'float': 'float 6s infinite ease-in-out'
 			},
             backgroundImage: {
-                'glass-gradient': 'linear-gradient(109.6deg, rgba(223,234,247,0.2) 11.2%, rgba(244,248,252,0.2) 91.1%)',
-                'hero-gradient': 'linear-gradient(180deg, rgba(10,10,10,0.8) 0%, rgba(5,5,5,1) 100%)',
-                'card-gradient': 'linear-gradient(to top, rgba(20,20,20,0.7) 0%, rgba(30,30,30,0.4) 100%)',
+                'glass-gradient': 'linear-gradient(109.6deg, rgba(17,24,39,0.7) 11.2%, rgba(9,13,20,0.7) 91.1%)',
+                'hero-gradient': 'linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(5,5,5,1) 100%)',
+                'card-gradient': 'linear-gradient(to top, rgba(10,11,15,0.7) 0%, rgba(15,15,22,0.4) 100%)',
+                'cyan-glow': 'radial-gradient(circle, rgba(30,174,219,0.15) 0%, rgba(5,5,5,0) 70%)',
             },
             fontFamily: {
                 'sans': ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
