@@ -2,10 +2,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,6 +21,15 @@ const Navbar = () => {
     };
   }, []);
 
+  // Close mobile menu when route changes
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  const isActive = (path: string) => {
+    return location.pathname === path ? "text-empire-cyan" : "text-empire-silver";
+  };
+
   return (
     <header 
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -27,16 +38,17 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center">
-          <a href="/" className="text-xl font-semibold tracking-tight text-white">
-            <span className="text-empire-red">The</span> Clone Empire
-          </a>
+          <Link to="/" className="text-xl font-semibold tracking-tight text-white flex items-center">
+            <span className="text-empire-cyan">The</span>
+            <span className="ml-2">Clone Empire</span>
+          </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-6">
-          <a href="#features" className="text-sm text-empire-silver hover:text-white transition-colors">
+          <Link to="/features" className={`text-sm hover:text-white transition-colors ${isActive('/features')}`}>
             Clone Types
-          </a>
+          </Link>
           <a href="#how-it-works" className="text-sm text-empire-silver hover:text-white transition-colors">
             How It Works
           </a>
@@ -46,6 +58,12 @@ const Navbar = () => {
           <a href="#experience" className="text-sm text-empire-silver hover:text-white transition-colors">
             Experience
           </a>
+          <Link to="/about" className={`text-sm hover:text-white transition-colors ${isActive('/about')}`}>
+            About
+          </Link>
+          <Link to="/contact" className={`text-sm hover:text-white transition-colors ${isActive('/contact')}`}>
+            Contact
+          </Link>
           <Button 
             variant="ghost" 
             size="sm" 
@@ -78,34 +96,42 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="md:hidden bg-empire-darker/95 glass-effect backdrop-blur-md absolute w-full">
           <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            <a 
-              href="#features" 
+            <Link 
+              to="/features" 
               className="text-empire-silver hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Clone Types
-            </a>
+            </Link>
             <a 
               href="#how-it-works" 
               className="text-empire-silver hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
             >
               How It Works
             </a>
             <a 
               href="#pricing" 
               className="text-empire-silver hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Packages
             </a>
             <a 
               href="#experience" 
               className="text-empire-silver hover:text-white transition-colors py-2"
-              onClick={() => setMobileMenuOpen(false)}
             >
               Experience
             </a>
+            <Link 
+              to="/about" 
+              className="text-empire-silver hover:text-white transition-colors py-2"
+            >
+              About
+            </Link>
+            <Link 
+              to="/contact" 
+              className="text-empire-silver hover:text-white transition-colors py-2"
+            >
+              Contact
+            </Link>
             <div className="flex flex-col space-y-2 pt-2">
               <Button 
                 variant="ghost" 
