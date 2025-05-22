@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -43,7 +42,7 @@ const Features = () => {
   ];
 
   return (
-    <div className="bg-empire-darkest text-white min-h-screen">
+    <div className="bg-empire-light dark:bg-empire-darkest text-empire-dark dark:text-white min-h-screen">
       <Navbar />
       <main>
         {/* Hero Section */}

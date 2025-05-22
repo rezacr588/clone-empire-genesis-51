@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { CheckCircle2, Clock, Video } from 'lucide-react';
@@ -23,7 +22,7 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-24 bg-empire-darker relative">
+    <section id="experience" className="py-24 bg-empire-darker relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-empire-medium/20 to-transparent"></div>
       
       <div className="container mx-auto px-4">

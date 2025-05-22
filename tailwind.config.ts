@@ -62,19 +62,19 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-                // Empire colors with Vision Pro inspiration
+                // Updated color palette
                 empire: {
-                    cyan: "#1EAEDB",       // Primary neon cyan
-                    darkCyan: "#0F87A7",   // Darker cyan for hover states
-                    lightCyan: "#33C3F0",  // Lighter cyan for highlights
-                    dark: "#0A0A0F",       // Deep space dark
-                    darker: "#06060A",     // Deeper dark for backgrounds
-                    darkest: "#030305",    // Almost black
-                    light: "#AABBC3",      // Light text
-                    medium: "#667781",     // Medium text/accents
-                    charcoal: "#1A1F2C",   // Charcoal for cards
-                    silver: "#EAEAEA",     // Silver for text
-                    red: "#ED1E79",        // Red accent
+                    light: "#F5F5F5",       // Light color from palette
+                    medium: "#BCC6CC",      // Medium color from palette
+                    silver: "#D9D9D9",      // Silver color from palette
+                    red: "#E10600",         // Red color from palette
+                    dark: "#0A0A0F",        // Keep deep space dark
+                    darker: "#06060A",      // Keep darker backgrounds
+                    darkest: "#030305",     // Keep almost black
+                    charcoal: "#1A1F2C",    // Keep charcoal for cards
+                    cyan: "#1EAEDB",        // Keep neon cyan for accents
+                    darkCyan: "#0F87A7",    // Keep darker cyan
+                    lightCyan: "#33C3F0",   // Keep lighter cyan
                 }
 			},
 			borderRadius: {
@@ -151,7 +151,8 @@ export default {
                 'cyan-glow': 'radial-gradient(circle, rgba(30,174,219,0.15) 0%, rgba(5,5,5,0) 70%)',
             },
             fontFamily: {
-                'sans': ['Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
+                'sans': ['Exo 2', 'Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
+                'exo': ['Exo 2', 'sans-serif'],
             }
 		}
 	},

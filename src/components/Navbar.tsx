@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { ThemeToggle } from './ThemeToggle';
+import CalendlyWidget from './CalendlyWidget';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,131 +27,155 @@ const Navbar = () => {
     setMobileMenuOpen(false);
   }, [location.pathname]);
 
+  // Handle smooth scrolling for anchor links
+  const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    
+    // Only scroll if we're on the home page
+    if (location.pathname === '/') {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // If not on home page, navigate to home and then scroll after page load
+      window.location.href = `/#${id}`;
+    }
+  };
+
   const isActive = (path: string) => {
-    return location.pathname === path ? "text-empire-cyan" : "text-empire-silver";
+    return location.pathname === path ? "text-empire-red" : "text-empire-silver";
   };
 
   return (
     <header 
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-empire-darker/80 light-mode:bg-white/80 glass-effect backdrop-blur-md py-3' : 'bg-transparent py-5'
+      className={`fixed top-0 w-full z-50 transition-all duration-300 font-exo ${
+        isScrolled
+          ? 'bg-empire-darker/90 backdrop-blur-md py-2 shadow-lg'
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <div className="flex items-center">
           <Link to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/d1821810-1eb1-4bcc-9999-2db5692580f3.png" 
-              alt="The Clone Empire" 
-              className="h-8 md:h-10"
+            <img
+              src="/lovable-uploads/d1821810-1eb1-4bcc-9999-2db5692580f3.png"
+              alt="The Clone Empire"
+              className={`transition-all duration-300 ${
+                isScrolled ? 'h-6 md:h-8' : 'h-8 md:h-10'
+              }`}
             />
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-6">
-          <Link to="/features" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/features')}`}>
+        <nav className="hidden lg:flex items-center gap-6">
+          <Link 
+            to="/clone-types" 
+            className={`text-sm font-medium hover:text-empire-red transition-colors ${isActive('/features')}`}
+          >
             Clone Types
           </Link>
-          <a href="#how-it-works" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
+          <a 
+            href="#how-it-works" 
+            className="text-sm font-medium text-empire-silver hover:text-empire-red transition-colors"
+            onClick={(e) => handleAnchorClick(e, 'how-it-works')}
+          >
             How It Works
           </a>
-          <a href="#pricing" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
-            Packages
-          </a>
-          <a href="#experience" className="text-sm text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors">
+          <a 
+            href="#experience" 
+            className="text-sm font-medium text-empire-silver hover:text-empire-red transition-colors"
+            onClick={(e) => handleAnchorClick(e, 'experience')}
+          >
             Experience
           </a>
-          <Link to="/about" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/about')}`}>
+          <Link 
+            to="/about" 
+            className={`text-sm font-medium hover:text-empire-red transition-colors ${isActive('/about')}`}
+          >
             About
           </Link>
-          <Link to="/contact" className={`text-sm hover:text-white light-mode:hover:text-empire-dark transition-colors ${isActive('/contact')}`}>
+          <Link 
+            to="/contact" 
+            className={`text-sm font-medium hover:text-empire-red transition-colors ${isActive('/contact')}`}
+          >
             Contact
           </Link>
-          <ThemeToggle />
-          <Button 
-            variant="ghost" 
-            size="sm" 
-            className="ml-2 bg-empire-charcoal light-mode:bg-gray-200 text-white light-mode:text-empire-dark hover:bg-empire-charcoal/80 light-mode:hover:bg-gray-300"
-          >
-            Sign In
-          </Button>
-          <Button 
-            size="sm" 
+          <div className="ml-2">
+            <ThemeToggle />
+          </div>
+          <CalendlyWidget 
+            url="https://calendly.com/clone-empire/demo" 
             className="ml-2 bg-empire-red text-white hover:bg-empire-red/90"
-          >
-            Book a Demo
-          </Button>
+          />
         </nav>
 
-        {/* Mobile Menu Button */}
-        <div className="flex md:hidden items-center gap-2">
+        {/* Mobile Navigation Controls */}
+        <div className="flex lg:hidden items-center gap-4">
+          <div className="hidden sm:block">
+            <CalendlyWidget 
+              url="https://calendly.com/clone-empire/demo"
+              className="bg-empire-red text-white hover:bg-empire-red/90 text-sm px-3 py-1"
+              text="Book Demo"
+              size="sm"
+            />
+          </div>
           <ThemeToggle />
           <Button 
             variant="ghost" 
             size="icon" 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)} 
-            className="text-white light-mode:text-empire-dark"
+            className="text-empire-silver hover:text-white hover:bg-transparent"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-empire-darker/95 light-mode:bg-white/95 glass-effect backdrop-blur-md absolute w-full">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
+        <div className="lg:hidden bg-empire-darker/95 backdrop-blur-md absolute w-full overflow-hidden transition-all">
+          <div className="container mx-auto px-4 py-5 flex flex-col space-y-4 max-h-[80vh] overflow-y-auto">
             <Link 
-              to="/features" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
+              to="/clone-types" 
+              className="font-medium text-empire-silver hover:text-white transition-colors py-3 border-b border-empire-charcoal/30"
             >
               Clone Types
             </Link>
             <a 
               href="#how-it-works" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
+              className="font-medium text-empire-silver hover:text-white transition-colors py-3 border-b border-empire-charcoal/30"
+              onClick={(e) => handleAnchorClick(e, 'how-it-works')}
             >
               How It Works
             </a>
             <a 
-              href="#pricing" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
-            >
-              Packages
-            </a>
-            <a 
               href="#experience" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
+              className="font-medium text-empire-silver hover:text-white transition-colors py-3 border-b border-empire-charcoal/30"
+              onClick={(e) => handleAnchorClick(e, 'experience')}
             >
               Experience
             </a>
             <Link 
               to="/about" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
+              className="font-medium text-empire-silver hover:text-white transition-colors py-3 border-b border-empire-charcoal/30"
             >
               About
             </Link>
             <Link 
               to="/contact" 
-              className="text-empire-silver light-mode:text-empire-medium hover:text-white light-mode:hover:text-empire-dark transition-colors py-2"
+              className="font-medium text-empire-silver hover:text-white transition-colors py-3 border-b border-empire-charcoal/30"
             >
               Contact
             </Link>
-            <div className="flex flex-col space-y-2 pt-2">
-              <Button 
-                variant="ghost" 
-                size="sm" 
-                className="w-full justify-center bg-empire-charcoal light-mode:bg-gray-200 text-white light-mode:text-empire-dark hover:bg-empire-charcoal/80 light-mode:hover:bg-gray-300"
-              >
-                Sign In
-              </Button>
-              <Button 
-                size="sm" 
+            <div className="pt-2 sm:hidden">
+              <CalendlyWidget
+                url="https://calendly.com/clone-empire/demo" 
                 className="w-full justify-center bg-empire-red text-white hover:bg-empire-red/90"
-              >
-                Book a Demo
-              </Button>
+              />
             </div>
           </div>
         </div>

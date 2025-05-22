@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
@@ -14,10 +13,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
+    // Check if user has a saved preference
     const storedTheme = localStorage.getItem("theme") as Theme | null;
+    
     if (storedTheme) {
       setTheme(storedTheme);
-      document.documentElement.classList.toggle("light-mode", storedTheme === "light");
+      document.documentElement.classList.toggle("dark", storedTheme === "dark");
+    } else {
+      // Default to dark mode
+      document.documentElement.classList.add("dark");
     }
   }, []);
 
@@ -25,7 +29,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const newTheme = theme === "dark" ? "light" : "dark";
     setTheme(newTheme);
     localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("light-mode", newTheme === "light");
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
   };
 
   return (

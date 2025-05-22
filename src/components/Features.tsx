@@ -1,41 +1,41 @@
-
 import React from 'react';
 import { Bot, Calendar, HeadphonesIcon, Phone, User } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 const Features = () => {
   const cloneTypes = [
     {
-      title: "Appointment Setter",
-      description: "Book meetings around the clock without human involvement. Prospect, qualify, and schedule – all through AI.",
-      icon: Calendar,
+      title: "Inquiry Handler Clone",
+      description: "Greets customers, understands their inquiries, and routes them to the right specialist clone.",
+      icon: Phone,
       color: "bg-gradient-to-br from-empire-darker to-empire-dark",
-      iconClass: "text-empire-cyan"
+      iconClass: "text-empire-red"
     },
     {
-      title: "AI Sales Closer",
-      description: "Handle objections, present solutions, and close deals using voice that sounds just like you or your best salesperson.",
+      title: "Resolution Specialist Clone",
+      description: "Handles and resolves customer issues with deep product knowledge and empathy.",
       icon: User,
       color: "bg-gradient-to-br from-empire-darker to-empire-dark",
       iconClass: "text-empire-cyan"
     },
     {
-      title: "Customer Success Agent",
-      description: "Support tickets, product onboarding, and account management handled by AI clones that know your business inside out.",
+      title: "Feedback Collector Clone",
+      description: "Gathers customer feedback and sentiment to drive continuous improvement.",
       icon: HeadphonesIcon,
       color: "bg-gradient-to-br from-empire-darker to-empire-dark",
       iconClass: "text-empire-cyan"
     },
     {
-      title: "Cold Calling Agent",
-      description: "Scale outreach with voice AI that can have natural conversations, qualify leads, and book meetings.",
-      icon: Phone,
+      title: "Escalation Coordinator Clone",
+      description: "Manages complex cases by escalating them to human agents or advanced AI clones.",
+      icon: Bot,
       color: "bg-gradient-to-br from-empire-darker to-empire-dark",
-      iconClass: "text-empire-cyan"
+      iconClass: "text-empire-red"
     },
     {
-      title: "Personalized AI Voice Assistant",
-      description: "Custom agent built for your unique needs - from handling specialized workflows to executing complex business processes.",
-      icon: Bot,
+      title: "Follow-Up Clone",
+      description: "Ensures post-resolution follow-up to maintain high customer satisfaction.",
+      icon: Calendar,
       color: "bg-gradient-to-br from-empire-darker to-empire-dark",
       iconClass: "text-empire-cyan"
     }
@@ -60,13 +60,16 @@ const Features = () => {
       
       <div className="container mx-auto px-4">
         <div className="mb-20 text-center max-w-3xl mx-auto">
-          <p className="text-empire-cyan font-medium mb-4 tracking-wider uppercase text-sm">Clone Agent Types</p>
-          <h2 className="text-4xl md:text-5xl font-medium mb-6 text-white tracking-tight">
-            <span className="text-gradient bg-gradient-to-r from-white via-empire-silver to-empire-light">What We </span>
-            <span className="text-empire-cyan">Do</span>
-          </h2>
-          <p className="text-empire-light text-lg leading-relaxed">
-            Deploy AI clones built for specific roles within your business, from lead generation to customer support.
+          <Badge variant="outline" className="mb-4 bg-empire-darker/50 border-empire-cyan text-empire-cyan">
+            Clone Roles
+          </Badge>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6">
+            <span className="text-gradient bg-gradient-to-r from-white via-empire-cyan to-white">
+              Customer Service Clone Team
+            </span>
+          </h1>
+          <p className="text-lg md:text-xl text-empire-light mb-8">
+            Each AI clone specializes in a customer service role, collaborating seamlessly to support your customers 24/7.
           </p>
         </div>
         
