@@ -68,6 +68,7 @@ export default {
                     medium: "#BCC6CC",      // Medium color from palette
                     silver: "#D9D9D9",      // Silver color from palette
                     red: "#E10600",         // Red color from palette
+                    "red-dark": "#BE0500",  // Darker red for hover states
                     dark: "#0A0A0F",        // Keep deep space dark
                     darker: "#06060A",      // Keep darker backgrounds
                     darkest: "#030305",     // Keep almost black
@@ -75,6 +76,8 @@ export default {
                     cyan: "#1EAEDB",        // Keep neon cyan for accents
                     darkCyan: "#0F87A7",    // Keep darker cyan
                     lightCyan: "#33C3F0",   // Keep lighter cyan
+                    lime: "#00E676",        // Neon lime for accents
+                    purple: "#7B61FF",      // Futuristic purple accent
                 }
 			},
 			borderRadius: {
@@ -120,7 +123,7 @@ export default {
                     }
                 },
                 'pulse-subtle': {
-                    '0%, 100%': {
+                    '0%': {
                         opacity: '1'
                     },
                     '50%': {
@@ -134,6 +137,14 @@ export default {
                     '50%': {
                         transform: 'translateY(-10px)'
                     }
+                },
+                'gradient-x': {
+                    '0%, 100%': {
+                        'background-position': '0% 50%',
+                    },
+                    '50%': {
+                        'background-position': '100% 50%',
+                    },
                 }
 			},
 			animation: {
@@ -142,7 +153,8 @@ export default {
                 'fade-in': 'fade-in 0.6s ease-out',
                 'slide-up': 'slide-up 0.8s ease-out',
                 'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out',
-                'float': 'float 6s infinite ease-in-out'
+                'float': 'float 6s infinite ease-in-out',
+                'gradient-x': 'gradient-x 8s ease infinite'
 			},
             backgroundImage: {
                 'glass-gradient': 'linear-gradient(109.6deg, rgba(17,24,39,0.7) 11.2%, rgba(9,13,20,0.7) 91.1%)',

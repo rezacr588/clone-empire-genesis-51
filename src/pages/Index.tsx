@@ -1,11 +1,10 @@
 import React, { useEffect, lazy, Suspense } from "react";
-import Navbar from "@/components/Navbar";
+import Layout from "@/components/Layout";
 import Features from "@/components/Features";
 import CinematicSection from "@/components/CinematicSection";
 import AIClonesShowcase from "@/components/AIClonesShowcase";
 import HowItWorks from "@/components/HowItWorks";
 import Experience from "@/components/Experience";
-import Footer from "@/components/Footer";
 import { ImportErrorHandler } from "@/components/ImportErrorHandler";
 import ErrorBoundary from "@/lib/ErrorBoundary";
 
@@ -26,53 +25,45 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="bg-empire-light dark:bg-empire-darkest text-empire-dark dark:text-white min-h-screen font-exo">
-      <ErrorBoundary>
-        <Navbar />
-      </ErrorBoundary>
-      <main>
-        <ImportErrorHandler 
-          importFn={() => import("@/components/Hero")} 
-          componentName="Hero"
-        >
-          <Suspense fallback={<ComponentLoader />}>
-            <Hero />
-          </Suspense>
-        </ImportErrorHandler>
+    <Layout>
+      <ImportErrorHandler
+        importFn={() => import("@/components/Hero")}
+        componentName="Hero"
+      >
+        <Suspense fallback={<ComponentLoader />}>
+          <Hero />
+        </Suspense>
+      </ImportErrorHandler>
 
-        <ErrorBoundary>
-          <Features />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <CinematicSection />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <AIClonesShowcase />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <HowItWorks />
-        </ErrorBoundary>
-        
-        <ErrorBoundary>
-          <Experience />
-        </ErrorBoundary>
-        
-        <ImportErrorHandler 
-          importFn={() => import("@/components/CTA")} 
-          componentName="CTA"
-        >
-          <Suspense fallback={<ComponentLoader />}>
-            <CTA />
-          </Suspense>
-        </ImportErrorHandler>
-      </main>
       <ErrorBoundary>
-        <Footer />
+        <Features />
       </ErrorBoundary>
-    </div>
+
+      <ErrorBoundary>
+        <CinematicSection />
+      </ErrorBoundary>
+
+      <ErrorBoundary>
+        <AIClonesShowcase />
+      </ErrorBoundary>
+
+      <ErrorBoundary>
+        <HowItWorks />
+      </ErrorBoundary>
+
+      <ErrorBoundary>
+        <Experience />
+      </ErrorBoundary>
+
+      <ImportErrorHandler
+        importFn={() => import("@/components/CTA")}
+        componentName="CTA"
+      >
+        <Suspense fallback={<ComponentLoader />}>
+          <CTA />
+        </Suspense>
+      </ImportErrorHandler>
+    </Layout>
   );
 };
 

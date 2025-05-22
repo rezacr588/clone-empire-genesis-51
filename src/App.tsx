@@ -10,6 +10,16 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import CloneTypes from "./pages/CloneTypes";
 import { ThemeProvider } from "./components/ThemeProvider";
+import Pricing from "./pages/Pricing";
+import Blog from "./pages/Blog";
+import Careers from "./pages/Careers";
+import Press from "./pages/Press";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
+import DataPolicy from "./pages/DataPolicy";
+import CookiePolicy from "./pages/CookiePolicy";
+import Enterprise from "./pages/Enterprise";
+import Integrations from "./pages/Integrations";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +36,16 @@ const App = () => (
             <Route path="/clone-types" element={<CloneTypes />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/pricing" element={<Pricing />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/careers" element={<Careers />} />
+            <Route path="/press" element={<Press />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/data-policy" element={<DataPolicy />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/enterprise" element={<Enterprise />} />
+            <Route path="/integrations" element={<Integrations />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

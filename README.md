@@ -1,73 +1,129 @@
-# Welcome to your Lovable project
+# Clone Empire
 
-## Project info
+A modern React application for an AI agent platform focused on creating and managing autonomous AI clones that can handle sales, support, and operations for businesses.
 
-**URL**: https://lovable.dev/projects/ac87ef6b-7041-4da9-a7fe-68d34860ede2
+## 🚀 Features
 
-## How can I edit this code?
+- **Autonomous AI Agent Platform**: Create and deploy AI clones with your voice, personality, and expertise
+- **Modern UI**: Built with React, TypeScript, and TailwindCSS
+- **Dark Mode Support**: Elegant light and dark themes
+- **Responsive Design**: Mobile-first approach for all screens
+- **Animation Effects**: Smooth typewriter, network visualization, and UI motion effects
 
-There are several ways of editing your application.
+## 🧰 Tech Stack
 
-**Use Lovable**
+- **Framework**: React + Vite
+- **Language**: TypeScript
+- **Styling**: TailwindCSS
+- **UI Components**: shadcn/ui
+- **Routing**: React Router v6
+- **State Management**: React Query + React Context
+- **Animation**: Custom hooks + CSS animations
+- **Icons**: Lucide Icons
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ac87ef6b-7041-4da9-a7fe-68d34860ede2) and start prompting.
+## 📂 Project Structure
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+clone-empire-genesis-51/
+├── public/             # Static assets
+│   ├── components/     # Reusable UI components
+│   │   └── ui/         # Base UI components (shadcn)
+│   ├── hooks/          # Custom React hooks
+│   ├── lib/            # Utility functions
+│   ├── pages/          # Page components
+│   └── styles/         # Global styles
+├── .env                # Environment variables
+└── vite.config.ts      # Vite configuration
 ```
 
-**Edit a file directly in GitHub**
+## 🧩 Custom Hooks
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+This project uses several custom hooks to abstract complex logic:
 
-**Use GitHub Codespaces**
+- **`useTypewriter`**: Creates typewriter text animation effects
+- **`useMouseTracking`**: Tracks mouse position for interactive elements
+- **`useNetworkAnimation`**: Renders network node animations on canvas
+- **`useTheme`**: Manages dark/light theme preferences
+- **`useIsMobile`**: Detects mobile viewport
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+See the [hooks documentation](src/hooks/README.md) for details.
 
-## What technologies are used for this project?
+## 🛠️ Getting Started
 
-This project is built with:
+### Prerequisites
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+- Node.js 16+ 
+- npm or yarn
 
-## How can I deploy this project?
+### Installation
 
-Simply open [Lovable](https://lovable.dev/projects/ac87ef6b-7041-4da9-a7fe-68d34860ede2) and click on Share -> Publish.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/clone-empire-genesis-51.git
+   cd clone-empire-genesis-51
+   ```
 
-## Can I connect a custom domain to my Lovable project?
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
 
-Yes, you can!
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+4. Open your browser to http://localhost:8080
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## 🚢 Deployment
+
+### Build for Production
+
+```bash
+npm run build
+# or
+yarn build
+```
+
+The build artifacts will be located in the `dist/` directory.
+
+### Preview Production Build
+
+```bash
+npm run preview
+# or
+yarn preview
+```
+
+## 📝 Development Guidelines
+
+### Component Structure
+
+- Use functional components with hooks
+- Follow the pattern established in the codebase
+- Separate business logic from UI components
+
+### Styling
+
+- Use TailwindCSS utility classes
+- For complex components, use composition over a single large component
+- Follow the design system for colors and spacing
+
+### Custom Hooks
+
+- Place reusable logic in custom hooks
+- Follow the naming convention: `use[Name]`
+- Include proper JSDoc comments and TypeScript types
+- Keep hooks focused on a single responsibility
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Contributors
+
+- Your Name - Creator and maintainer
