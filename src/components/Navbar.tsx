@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Moon, Sun, ChevronDown } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -6,7 +6,13 @@ import { useTheme } from '@/hooks';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.scrollY > 10;
+    }
+    return false;
+  });
+  
   const { theme, toggleTheme, isDark } = useTheme();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -22,9 +28,17 @@ const Navbar = () => {
       }
     };
     
+    // Initialize scrolled state correctly on mount
+    handleScroll();
+    
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close menu when route changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   const closeMenu = () => {
     setIsOpen(false);
@@ -38,24 +52,26 @@ const Navbar = () => {
     { name: 'Blog', path: '/blog' }
   ];
   
-  // Check if a link is active (exact match for home, starts with for other routes)
-  const isActive = (path: string) => {
-    if (path === '/') {
-      return currentPath === path;
-    }
-    return currentPath.startsWith(path);
-  };
+  // Memoized active path check to prevent unnecessary re-renders
+  const isActive = useMemo(() => {
+    return (path: string) => {
+      if (path === '/') {
+        return currentPath === path;
+      }
+      return currentPath.startsWith(path);
+    };
+  }, [currentPath]);
 
   return (
     <header className={`fixed w-full z-50 transition-all duration-300 ${
       scrolled 
-        ? 'py-2 bg-empire-darkest/90 backdrop-blur-lg border-b border-empire-silver/5' 
+        ? 'py-2 bg-white dark:bg-gray-900 shadow-md dark:border-b dark:border-gray-800' 
         : 'py-4 bg-transparent'
     }`}>
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center">
           <Link to="/" className="flex items-center">
-            <span className="text-2xl font-medium text-empire-light dark:text-empire-light">
+            <span className="text-2xl font-medium text-empire-dark dark:text-white">
               <span className="text-empire-canyon-deep">Clone</span>Empire
             </span>
           </Link>
@@ -68,7 +84,7 @@ const Navbar = () => {
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`px-4 py-2 text-empire-light dark:text-empire-light hover:text-empire-cyan transition-colors duration-200 relative group ${
+                  className={`px-4 py-2 text-empire-dark dark:text-white hover:text-empire-cyan transition-colors duration-200 relative group ${
                     active ? 'text-empire-cyan font-medium' : ''
                   }`}
                 >
@@ -81,56 +97,29 @@ const Navbar = () => {
             })}
             <Link
               to="/contact"
-              className="ml-4 px-5 py-2 bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-empire-light rounded-lg transition-colors duration-200"
+              className="ml-4 px-5 py-2 bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-white rounded-lg transition-colors duration-200"
             >
               Get Started
             </Link>
           </nav>
           
           <div className="flex items-center space-x-4 md:space-x-2">
-            {/* Dark Mode Toggle - Enhanced Design */}
-            <motion.button 
+            {/* Dark Mode Toggle - Simplified Design */}
+            <button 
               onClick={toggleTheme}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className={`relative p-2 rounded-full transition-all duration-300 overflow-hidden ${
+              className={`relative p-2 rounded-full transition-all duration-300 ${
                 isDark 
-                  ? 'bg-gradient-to-br from-empire-canyon-deep/50 to-empire-dark border border-empire-cyan/30 shadow-inner shadow-empire-cyan/10'
-                  : 'bg-gradient-to-br from-empire-cyan/20 to-empire-canyon/20 border border-empire-cyan/20'
+                  ? 'bg-gray-800 border border-gray-700' 
+                  : 'bg-gray-100 border border-gray-200'
               }`}
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
-              <div className="relative z-10">
-                <AnimatePresence mode="wait" initial={false}>
-                  {isDark ? (
-                    <motion.div
-                      key="sun"
-                      initial={{ opacity: 0, rotate: -30 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: 30 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Sun size={18} className="text-empire-cyan" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="moon"
-                      initial={{ opacity: 0, rotate: 30 }}
-                      animate={{ opacity: 1, rotate: 0 }}
-                      exit={{ opacity: 0, rotate: -30 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Moon size={18} className="text-empire-canyon-deep" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-              
-              {/* Subtle glow effect */}
-              <span className={`absolute inset-0 rounded-full ${
-                isDark ? 'bg-empire-cyan/5' : 'bg-empire-canyon-deep/5'
-              }`}></span>
-            </motion.button>
+              {isDark ? (
+                <Sun size={18} className="text-yellow-400" />
+              ) : (
+                <Moon size={18} className="text-gray-600" />
+              )}
+            </button>
             
             {/* Mobile Menu Button */}
             <button
@@ -139,9 +128,9 @@ const Navbar = () => {
               aria-label={isOpen ? 'Close menu' : 'Open menu'}
             >
               {isOpen ? (
-                <X className="w-6 h-6 text-empire-light" />
+                <X className="w-6 h-6 text-empire-dark dark:text-white" />
               ) : (
-                <Menu className="w-6 h-6 text-empire-light" />
+                <Menu className="w-6 h-6 text-empire-dark dark:text-white" />
               )}
             </button>
           </div>
@@ -156,7 +145,7 @@ const Navbar = () => {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-empire-darkest/95 backdrop-blur-lg border-t border-empire-silver/5"
+            className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800"
           >
             <div className="container mx-auto px-4 py-4">
               <nav className="flex flex-col space-y-3">
@@ -166,8 +155,8 @@ const Navbar = () => {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`px-4 py-2 text-empire-light hover:text-empire-cyan transition-colors duration-200 ${
-                        active ? 'text-empire-cyan font-medium bg-empire-canyon-deep/10 rounded-md' : ''
+                      className={`px-4 py-2 text-empire-dark dark:text-white hover:text-empire-cyan transition-colors duration-200 ${
+                        active ? 'text-empire-cyan font-medium bg-gray-100 dark:bg-gray-800 rounded-md' : ''
                       }`}
                       onClick={closeMenu}
                     >
@@ -177,7 +166,7 @@ const Navbar = () => {
                 })}
                 <Link
                   to="/contact"
-                  className="px-4 py-2 text-center bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-empire-light rounded-lg transition-colors duration-200 mt-4"
+                  className="px-4 py-2 text-center bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-white rounded-lg transition-colors duration-200 mt-4"
                   onClick={closeMenu}
                 >
                   Get Started

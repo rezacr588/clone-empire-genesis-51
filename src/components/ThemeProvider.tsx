@@ -1,39 +1,24 @@
-import React, { createContext, useContext, useLayoutEffect, useState } from "react";
+import React, { createContext, useContext } from "react";
+import { useTheme as useThemeHook } from "@/hooks/useTheme";
 
 type Theme = "dark" | "light";
 
 type ThemeContextType = {
-  theme: Theme;
+  theme: Theme | null;
   toggleTheme: () => void;
+  setTheme: (newTheme: Theme) => void;
+  isDark: boolean;
+  isLight: boolean;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
-
-  useLayoutEffect(() => {
-    // Check if user has a saved preference
-    const storedTheme = localStorage.getItem("theme") as Theme | null;
-    
-    if (storedTheme) {
-      setTheme(storedTheme);
-      document.documentElement.classList.toggle("dark", storedTheme === "dark");
-    } else {
-      // Default to dark mode
-      document.documentElement.classList.add("dark");
-    }
-  }, []);
-
-  const toggleTheme = () => {
-    const newTheme = theme === "dark" ? "light" : "dark";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    document.documentElement.classList.toggle("dark", newTheme === "dark");
-  };
+  // Use the more complete hook implementation
+  const themeState = useThemeHook();
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={themeState}>
       {children}
     </ThemeContext.Provider>
   );

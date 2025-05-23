@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/lovable-uploads/d1821810-1eb1-4bcc-9999-2db5692580f3.png" />
@@ -8,6 +8,23 @@
     <title>The Clone Empire | Automation. Intelligence. Empire.</title>
     <meta name="description" content="Meet your AI Clone - Sell, Support, Scale without limits. Your custom voice-powered agent working 24/7." />
     <meta name="author" content="The Clone Empire" />
+
+    <!-- Theme detection script - Must be in head and run synchronously before any rendering -->
+    <script>
+      (function() {
+        // Check stored preference first
+        const savedTheme = localStorage.getItem('theme');
+        // Then check system preference as fallback
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        // Apply dark class if preference is dark or no preference but system is dark
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      })();
+    </script>
 
     <meta property="og:title" content="The Clone Empire | Automation. Intelligence. Empire." />
     <meta property="og:description" content="Meet your AI Clone - Sell, Support, Scale without limits. Your custom voice-powered agent working 24/7." />
