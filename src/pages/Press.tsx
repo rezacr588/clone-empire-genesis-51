@@ -77,11 +77,11 @@ const Press = () => {
               <h3 className="text-xl md:text-2xl font-semibold text-empire-dark dark:text-white mb-2">{release.title}</h3>
               <p className="text-empire-dark/90 dark:text-empire-light/80 mb-4 leading-relaxed">{release.excerpt}</p>
               <div className="flex items-center space-x-4">
-                <a href={release.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-empire-lime hover:text-opacity-80 font-medium text-sm">
+                <a href={release.link} target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-empire-cyan hover:text-opacity-80 font-medium text-sm">
                   Read Full Story <ExternalLink className="h-4 w-4 ml-1.5" />
                 </a>
                 {release.downloadLink && (
-                   <a href={release.downloadLink} download className="inline-flex items-center text-empire-lime hover:text-opacity-80 font-medium text-sm">
+                   <a href={release.downloadLink} download className="inline-flex items-center text-empire-cyan hover:text-opacity-80 font-medium text-sm">
                       Download PDF <Download className="h-4 w-4 ml-1.5" />
                   </a>
                 )}
@@ -100,7 +100,7 @@ const Press = () => {
               <h4 className="text-lg font-semibold text-empire-red mb-1 group-hover:text-empire-red-dark transition-colors duration-300">{mention.publication}</h4>
               <p className="text-md text-empire-dark dark:text-white mb-2">{mention.title}</p>
               <p className="text-xs text-empire-dark/70 dark:text-empire-light/70">{mention.date}</p>
-              <span className="mt-3 inline-flex items-center text-empire-lime group-hover:text-opacity-80 text-sm font-medium">
+              <span className="mt-3 inline-flex items-center text-empire-cyan group-hover:text-opacity-80 text-sm font-medium">
                   View Article <ExternalLink className="h-4 w-4 ml-1.5" />
               </span>
             </a>

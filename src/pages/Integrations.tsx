@@ -120,7 +120,7 @@ const IntegrationCard = ({ name, description, icon, category, status }: Integrat
         </div>
         <span className={`text-xs px-2 py-1 rounded-full ${
           status === "Available" 
-            ? "bg-empire-lime/10 text-empire-lime" 
+            ? "bg-empire-cyan/10 text-empire-cyan" 
             : "bg-empire-purple/10 text-empire-purple"
         }`}>
           {status}
@@ -161,7 +161,7 @@ const Integrations: React.FC = () => {
         <section className="relative overflow-hidden bg-gradient-to-b from-empire-light to-white dark:from-empire-darkest dark:to-empire-dark py-20">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[70%] bg-empire-cyan/5 rounded-full blur-[120px] opacity-40"></div>
-            <div className="absolute top-[30%] -right-[10%] w-[70%] h-[50%] bg-empire-lime/10 rounded-full blur-[100px] opacity-60"></div>
+            <div className="absolute top-[30%] -right-[10%] w-[70%] h-[50%] bg-empire-cyan/10 rounded-full blur-[100px] opacity-60"></div>
           </div>
           
           <div className="container mx-auto px-4 relative z-10 pt-10">
@@ -171,7 +171,7 @@ const Integrations: React.FC = () => {
                 Connect Your Tools
               </span>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-empire-dark dark:text-white mb-4">
-                Powerful <span className="inline-block text-gradient bg-gradient-to-r from-empire-cyan via-empire-lime to-empire-cyan">Integrations</span>
+                Powerful <span className="inline-block text-gradient bg-gradient-to-r from-empire-cyan via-empire-cyan to-empire-cyan">Integrations</span>
               </h1>
               <p className="text-lg md:text-xl lg:text-2xl text-empire-dark dark:text-empire-light max-w-3xl mx-auto">
                 Connect your AI agents with the tools and platforms you already use to create a seamless workflow.
@@ -319,7 +319,7 @@ console.log(agent);`}</code>
         <section className="py-16 md:py-20 bg-gradient-to-r from-empire-darkest via-empire-dark to-empire-darkest relative overflow-hidden">
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-[30%] -right-[10%] w-[70%] h-[50%] bg-empire-cyan/5 rounded-full blur-[100px] opacity-30"></div>
-            <div className="absolute -bottom-[30%] -left-[10%] w-[80%] h-[70%] bg-empire-lime/5 rounded-full blur-[120px] opacity-20"></div>
+            <div className="absolute -bottom-[30%] -left-[10%] w-[80%] h-[70%] bg-empire-cyan/5 rounded-full blur-[120px] opacity-20"></div>
           </div>
           
           <div className="container mx-auto px-4 relative z-10">

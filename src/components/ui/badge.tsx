@@ -9,14 +9,17 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80",
+          "border-transparent bg-empire-silver text-empire-darkest hover:bg-empire-silver/80",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border-transparent bg-empire-medium text-empire-darkest hover:bg-empire-medium/80",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "text-foreground",
-        cyan: "border-transparent bg-empire-cyan/20 text-empire-cyan dark:bg-empire-cyan/10 dark:text-empire-darkCyan",
-        red: "border-transparent bg-empire-red/20 text-empire-red dark:bg-empire-red/10 dark:text-empire-red",
+          "border-transparent bg-empire-canyon text-empire-light hover:bg-empire-canyon/80",
+        outline: "text-foreground border-current",
+        canyon: "border-transparent bg-empire-canyon/10 text-empire-canyon-deep",
+        silver: "border-transparent bg-empire-silver/20 text-empire-darkest dark:text-empire-silver dark:bg-empire-darkest dark:border-empire-silver/30",
+        light: "border-transparent bg-empire-light/80 text-empire-darkest dark:bg-empire-medium/20 dark:text-empire-light",
+        medium: "border-transparent bg-empire-medium/20 text-empire-darkest dark:text-empire-medium dark:bg-empire-darkest dark:border-empire-medium/30",
+        primary: "border-transparent bg-empire-cyan/20 text-empire-cyan hover:bg-empire-cyan/30"
       },
     },
     defaultVariants: {

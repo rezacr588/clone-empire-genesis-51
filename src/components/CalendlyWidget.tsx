@@ -17,7 +17,7 @@ interface CalendlyWidgetProps {
 const CalendlyWidget: React.FC<CalendlyWidgetProps> = ({
   url = CALENDLY.DEFAULT_URL,
   text = "Book a Demo",
-  className = "bg-empire-red hover:bg-empire-red/90 text-white",
+  className = "bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-white",
   prefill = {},
   isButton = true,
   size = "default",
@@ -86,8 +86,8 @@ const CalendlyWidget: React.FC<CalendlyWidgetProps> = ({
         <DialogContent className="sm:max-w-[600px] md:max-w-[800px] lg:max-w-[1000px] p-0">
           {hasError ? (
             <div className="flex flex-col items-center justify-center p-10 text-center">
-              <div className="w-12 h-12 rounded-full bg-red-100 mb-4 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-red-500">
+              <div className="w-12 h-12 rounded-full bg-empire-canyon/10 mb-4 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 text-empire-canyon">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </div>
@@ -108,8 +108,8 @@ const CalendlyWidget: React.FC<CalendlyWidgetProps> = ({
   return (
     <div>
       {hasError ? (
-        <div className="p-4 border border-red-300 bg-red-50 rounded-md">
-          <p className="text-red-800">Failed to load scheduling widget</p>
+        <div className="p-4 border border-empire-canyon/30 bg-empire-canyon/5 rounded-md">
+          <p className="text-empire-canyon-deep">Failed to load scheduling widget</p>
         </div>
       ) : (
         <div id="calendly-inline-widget" style={{ minWidth: '320px', height: '700px' }} />

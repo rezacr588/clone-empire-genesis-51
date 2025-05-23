@@ -1,0 +1,68 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with dark color -->
+  <rect width="800" height="600" fill="#06060A" />
+  
+  <!-- Abstract grid lines -->
+  <g stroke="#D9D9D9" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="0" y1="500" x2="800" y2="500" />
+    
+    <line x1="100" y1="0" x2="100" y2="600" />
+    <line x1="200" y1="0" x2="200" y2="600" />
+    <line x1="300" y1="0" x2="300" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="500" y1="0" x2="500" y2="600" />
+    <line x1="600" y1="0" x2="600" y2="600" />
+    <line x1="700" y1="0" x2="700" y2="600" />
+  </g>
+  
+  <!-- Glowing circles representing AI -->
+  <circle cx="150" cy="450" r="80" fill="#44f9ff" fill-opacity="0.15" />
+  <circle cx="650" cy="150" r="100" fill="#E10600" fill-opacity="0.07" />
+  
+  <!-- Central icon: A human and robot hand connecting -->
+  <g transform="translate(400, 300)">
+    <!-- Robot hand (left side) -->
+    <path d="M-100,0 L-60,0 L-60,-20 L-40,-20 L-40,20 L-60,20 L-60,0" 
+          fill="#44f9ff" stroke="#D9D9D9" stroke-width="2" />
+    <circle cx="-80" cy="0" r="5" fill="#E10600" />
+    
+    <!-- Human hand (right side) -->
+    <path d="M100,0 L60,0 L60,-15 C60,-15 40,-15 40,0 C40,15 60,15 60,15 L60,0" 
+          fill="#D9D9D9" stroke="#D9D9D9" stroke-width="2" />
+    
+    <!-- Connection spark -->
+    <circle cx="0" cy="0" r="15" fill="#E10600" opacity="0.9">
+      <animate attributeName="opacity" values="0.9;0.3;0.9" dur="2s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="0" cy="0" r="25" fill="none" stroke="#44f9ff" stroke-width="3" opacity="0.7">
+      <animate attributeName="r" values="25;35;25" dur="3s" repeatCount="indefinite" />
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Abstract data flow lines -->
+  <g stroke="#44f9ff" stroke-width="1.5" stroke-opacity="0.4">
+    <path d="M150,300 C250,250 350,350 450,300" fill="none">
+      <animate attributeName="d" 
+               values="M150,300 C250,250 350,350 450,300;
+                       M150,300 C250,320 350,280 450,300;
+                       M150,300 C250,250 350,350 450,300" 
+               dur="6s" repeatCount="indefinite" />
+    </path>
+    <path d="M200,350 C300,380 400,320 500,350" fill="none">
+      <animate attributeName="d" 
+               values="M200,350 C300,380 400,320 500,350;
+                       M200,350 C300,330 400,370 500,350;
+                       M200,350 C300,380 400,320 500,350" 
+               dur="7s" repeatCount="indefinite" />
+    </path>
+  </g>
+  
+  <!-- Accent lines -->
+  <line x1="100" y1="550" x2="700" y2="550" stroke="#44f9ff" stroke-width="2" stroke-opacity="0.5" />
+  <line x1="400" y1="50" x2="400" y2="550" stroke="#E10600" stroke-width="2" stroke-opacity="0.5" />
+</svg>

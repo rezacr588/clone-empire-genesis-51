@@ -9,14 +9,14 @@ const CookiePolicy = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-empire-red mb-8">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-empire-canyon mb-8">
           Cookie Policy
         </h1>
         <p className="text-sm text-empire-dark/70 dark:text-empire-light/70 mb-8">
           Last Updated: November 15, 2023
         </p>
 
-        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-red prose-a:text-empire-lime">
+        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-canyon prose-a:text-empire-cyan">
           <p>
             This Cookie Policy explains how The Clone Empire ("we", "us", or "our") uses cookies and similar technologies on our website and platform. It explains what these technologies are and why we use them, as well as your rights to control our use of them.
           </p>

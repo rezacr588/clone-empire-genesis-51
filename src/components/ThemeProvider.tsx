@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useLayoutEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
@@ -12,7 +12,7 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     // Check if user has a saved preference
     const storedTheme = localStorage.getItem("theme") as Theme | null;
     

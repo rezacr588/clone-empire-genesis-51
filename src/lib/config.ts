@@ -1,6 +1,21 @@
 // Global configuration settings
 
-// Calendly configuration
+// GoHighLevel configuration
+export const GOHIGHLEVEL = {
+  // Default calendar ID for GoHighLevel
+  DEFAULT_CALENDAR_ID: import.meta.env.VITE_GOHIGHLEVEL_CALENDAR_ID || '',
+  
+  // Location ID for GoHighLevel API
+  LOCATION_ID: import.meta.env.VITE_GOHIGHLEVEL_LOCATION_ID || '',
+  
+  // API token for GoHighLevel API access
+  API_KEY: import.meta.env.VITE_GOHIGHLEVEL_API_KEY || '',
+  
+  // User ID for GoHighLevel API access
+  USER_ID: import.meta.env.VITE_GOHIGHLEVEL_USER_ID || '',
+};
+
+// Calendly configuration (legacy - to be removed after migration)
 export const CALENDLY = {
   // Default URL for Calendly meetings
   // Replace this with your actual Calendly URL

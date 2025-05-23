@@ -83,8 +83,8 @@ const Enterprise: React.FC = () => {
               
               <div className="bg-empire-light/50 dark:bg-empire-charcoal p-6 rounded-xl border border-empire-medium/10 dark:border-empire-charcoal">
                 <div className="flex items-center mb-4">
-                  <div className="p-3 rounded-lg bg-empire-lime/10 mr-4">
-                    <Server className="w-6 h-6 text-empire-lime" />
+                  <div className="p-3 rounded-lg bg-empire-cyan/10 mr-4">
+                    <Server className="w-6 h-6 text-empire-cyan" />
                   </div>
                   <h3 className="text-xl font-semibold text-empire-dark dark:text-white">Private Deployment</h3>
                 </div>

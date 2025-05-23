@@ -9,14 +9,14 @@ const TermsOfService = () => {
   return (
     <Layout>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-empire-red mb-8">
+        <h1 className="text-4xl md:text-5xl font-medium tracking-tight text-empire-canyon mb-8">
           Terms of Service
         </h1>
         <p className="text-sm text-empire-dark/70 dark:text-empire-light/70 mb-8">
           Last Updated: November 15, 2023
         </p>
 
-        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-red prose-a:text-empire-lime">
+        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-canyon prose-a:text-empire-cyan">
           <p>
             Welcome to The Clone Empire. These Terms of Service ("Terms") govern your use of our website, platform, and services related to AI agent clones ("Services"). By accessing or using our Services, you agree to be bound by these Terms.
           </p>

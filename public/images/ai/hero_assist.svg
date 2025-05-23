@@ -1,0 +1,199 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Definitions for reusable elements -->
+  <defs>
+    <!-- Pulse effect gradient -->
+    <radialGradient id="pulseGradient" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" stop-color="#44f9ff" stop-opacity="0.7">
+        <animate attributeName="stop-opacity" values="0.7;0.2;0.7" dur="3s" repeatCount="indefinite"/>
+      </stop>
+      <stop offset="100%" stop-color="#44f9ff" stop-opacity="0">
+        <animate attributeName="stop-opacity" values="0;0.1;0" dur="3s" repeatCount="indefinite"/>
+      </stop>
+    </radialGradient>
+    
+    <!-- Digital circuit pattern -->
+    <pattern id="circuitPattern" patternUnits="userSpaceOnUse" width="100" height="100" patternTransform="scale(0.5)">
+      <path d="M10,10 L30,10 L30,30 L50,30 L50,50 L70,50 L70,70 L90,70" 
+            stroke="#44f9ff" stroke-width="1" fill="none" stroke-opacity="0.2"/>
+      <path d="M90,10 L70,10 L70,30 L50,30 L50,50 L30,50 L30,70 L10,70" 
+            stroke="#44f9ff" stroke-width="1" fill="none" stroke-opacity="0.2"/>
+      <path d="M50,10 L50,90" stroke="#44f9ff" stroke-width="1" fill="none" stroke-opacity="0.1"/>
+      <path d="M10,50 L90,50" stroke="#44f9ff" stroke-width="1" fill="none" stroke-opacity="0.1"/>
+    </pattern>
+    
+    <!-- Scanning effect filter -->
+    <filter id="scanlineEffect" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.01" numOctaves="1" result="noise" seed="1">
+        <animate attributeName="seed" from="1" to="10" dur="5s" repeatCount="indefinite" />
+      </feTurbulence>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+  </defs>
+
+  <!-- Background with dark color -->
+  <rect width="800" height="600" fill="#06060A" />
+  
+  <!-- Circuit board background pattern -->
+  <rect width="800" height="600" fill="url(#circuitPattern)" opacity="0.15">
+    <animate attributeName="opacity" values="0.15;0.08;0.15" dur="8s" repeatCount="indefinite" />
+  </rect>
+  
+  <!-- Abstract grid lines -->
+  <g stroke="#D9D9D9" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="0" y1="500" x2="800" y2="500" />
+    
+    <line x1="100" y1="0" x2="100" y2="600" />
+    <line x1="200" y1="0" x2="200" y2="600" />
+    <line x1="300" y1="0" x2="300" y2="600" />
+    <line x1="400" y1="0" x2="400" y2="600" />
+    <line x1="500" y1="0" x2="500" y2="600" />
+    <line x1="600" y1="0" x2="600" y2="600" />
+    <line x1="700" y1="0" x2="700" y2="600" />
+  </g>
+  
+  <!-- Digital particles scattered across the scene -->
+  <g id="particles">
+    <circle cx="120" cy="120" r="2" fill="#44f9ff" opacity="0.7">
+      <animate attributeName="opacity" values="0.7;0.2;0.7" dur="3s" begin="0s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="120;150;120" dur="15s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="120;100;120" dur="12s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="650" cy="200" r="1.5" fill="#44f9ff" opacity="0.5">
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="4s" begin="1s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="650;680;650" dur="20s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="200;180;200" dur="15s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="350" cy="450" r="1.8" fill="#E10600" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="5s" begin="2s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="350;380;350" dur="18s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="450;470;450" dur="14s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="500" cy="150" r="2" fill="#E10600" opacity="0.5">
+      <animate attributeName="opacity" values="0.5;0.1;0.5" dur="6s" begin="1.5s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="500;520;500" dur="17s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="150;180;150" dur="13s" repeatCount="indefinite" />
+    </circle>
+    <circle cx="200" cy="350" r="1.7" fill="#44f9ff" opacity="0.6">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="4.5s" begin="0.5s" repeatCount="indefinite" />
+      <animate attributeName="cx" values="200;230;200" dur="16s" repeatCount="indefinite" />
+      <animate attributeName="cy" values="350;330;350" dur="14.5s" repeatCount="indefinite" />
+    </circle>
+  </g>
+  
+  <!-- Glowing circles representing AI -->
+  <circle cx="150" cy="450" r="80" fill="url(#pulseGradient)">
+    <animate attributeName="r" values="80;85;80" dur="10s" repeatCount="indefinite" />
+  </circle>
+  <circle cx="650" cy="150" r="100" fill="#E10600" fill-opacity="0.07">
+    <animate attributeName="fill-opacity" values="0.07;0.04;0.07" dur="8s" repeatCount="indefinite" />
+    <animate attributeName="r" values="100;105;100" dur="12s" repeatCount="indefinite" />
+  </circle>
+  
+  <!-- AI analysis/scanning radar effect -->
+  <circle cx="400" cy="300" r="180" stroke="#44f9ff" stroke-width="0.5" fill="none" stroke-opacity="0.2" />
+  <circle cx="400" cy="300" r="120" stroke="#44f9ff" stroke-width="0.5" fill="none" stroke-opacity="0.2" />
+  <circle cx="400" cy="300" r="60" stroke="#44f9ff" stroke-width="0.5" fill="none" stroke-opacity="0.2" />
+  
+  <!-- Scanning line -->
+  <line x1="400" y1="120" x2="400" y2="480" stroke="#44f9ff" stroke-width="1" stroke-opacity="0.5">
+    <animate attributeName="x1" values="220;580;220" dur="6s" repeatCount="indefinite" />
+    <animate attributeName="x2" values="220;580;220" dur="6s" repeatCount="indefinite" />
+  </line>
+  
+  <!-- Central icon: An advanced robotic/human interface -->
+  <g transform="translate(400, 300)" filter="url(#scanlineEffect)">
+    <!-- Robot/digital side (left) -->
+    <g>
+      <path d="M-100,-20 L-60,-20 L-60,-40 L-20,-40 L-20,40 L-60,40 L-60,-20" 
+            fill="#44f9ff" stroke="#D9D9D9" stroke-width="1" fill-opacity="0.3" />
+      
+      <!-- Digital circuit elements -->
+      <line x1="-90" y1="-10" x2="-70" y2="-10" stroke="#44f9ff" stroke-width="1" />
+      <line x1="-90" y1="0" x2="-70" y2="0" stroke="#44f9ff" stroke-width="1" />
+      <line x1="-90" y1="10" x2="-70" y2="10" stroke="#44f9ff" stroke-width="1" />
+      <line x1="-80" y1="-10" x2="-80" y2="10" stroke="#44f9ff" stroke-width="1" />
+      
+      <!-- Pulsing core -->
+      <circle cx="-50" cy="0" r="8" fill="#E10600">
+        <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
+      </circle>
+    </g>
+    
+    <!-- Human-like side (right) -->
+    <g>
+      <path d="M100,0 Q60,40 20,0 Q60,-40 100,0" 
+            fill="#D9D9D9" stroke="#D9D9D9" stroke-width="1" fill-opacity="0.3" />
+      
+      <!-- Subtle lines suggesting human features -->
+      <path d="M40,0 Q60,-10 80,0" stroke="#D9D9D9" stroke-width="0.5" fill="none" />
+    </g>
+    
+    <!-- Connection interface -->
+    <g>
+      <!-- Connection spark with enhanced animation -->
+      <circle cx="0" cy="0" r="15" fill="#E10600" opacity="0.9">
+        <animate attributeName="opacity" values="0.9;0.3;0.9" dur="1.5s" repeatCount="indefinite" />
+        <animate attributeName="r" values="15;18;15" dur="2s" repeatCount="indefinite" />
+      </circle>
+      
+      <!-- Outer connection field -->
+      <circle cx="0" cy="0" r="25" fill="none" stroke="#44f9ff" stroke-width="2" opacity="0.7">
+        <animate attributeName="r" values="25;40;25" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="opacity" values="0.7;0.1;0.7" dur="3s" repeatCount="indefinite" />
+        <animate attributeName="stroke-dasharray" values="1,5;5,1;1,5" dur="10s" repeatCount="indefinite" />
+      </circle>
+      
+      <!-- Data transfer visualization -->
+      <g stroke="#44f9ff" stroke-width="1" opacity="0.6">
+        <line x1="-15" y1="0" x2="-40" y2="0">
+          <animate attributeName="x1" values="-15;-10;-15" dur="0.5s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="-40;-30;-40" dur="0.5s" repeatCount="indefinite" />
+        </line>
+        <line x1="15" y1="0" x2="40" y2="0">
+          <animate attributeName="x1" values="15;10;15" dur="0.5s" repeatCount="indefinite" />
+          <animate attributeName="x2" values="40;30;40" dur="0.5s" repeatCount="indefinite" />
+        </line>
+      </g>
+    </g>
+  </g>
+  
+  <!-- Abstract data flow lines with enhanced animation -->
+  <g stroke="#44f9ff" stroke-width="1.5" stroke-opacity="0.4">
+    <path d="M150,300 C250,250 350,350 450,300" fill="none">
+      <animate attributeName="d" 
+               values="M150,300 C250,250 350,350 450,300;
+                       M150,300 C250,320 350,280 450,300;
+                       M150,300 C250,250 350,350 450,300" 
+               dur="6s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dasharray" values="0,5,5;5,5,0;0,5,5" dur="8s" repeatCount="indefinite" />
+    </path>
+    <path d="M200,350 C300,380 400,320 500,350" fill="none">
+      <animate attributeName="d" 
+               values="M200,350 C300,380 400,320 500,350;
+                       M200,350 C300,330 400,370 500,350;
+                       M200,350 C300,380 400,320 500,350" 
+               dur="7s" repeatCount="indefinite" />
+      <animate attributeName="stroke-dasharray" values="5,5,0;0,5,5;5,5,0" dur="7s" repeatCount="indefinite" />
+    </path>
+  </g>
+  
+  <!-- Binary data visualization -->
+  <g font-family="monospace" font-size="8" fill="#44f9ff" opacity="0.3">
+    <text x="120" y="200">01001010</text>
+    <text x="120" y="210">10101100</text>
+    <text x="120" y="220">11010001</text>
+    <text x="650" y="380">01101110</text>
+    <text x="650" y="390">10110010</text>
+    <text x="650" y="400">00101101</text>
+  </g>
+  
+  <!-- Accent lines -->
+  <line x1="100" y1="550" x2="700" y2="550" stroke="#44f9ff" stroke-width="2" stroke-opacity="0.5" />
+  <line x1="400" y1="50" x2="400" y2="550" stroke="#E10600" stroke-width="2" stroke-opacity="0.5">
+    <animate attributeName="stroke-dasharray" values="1,0;5,15;1,0" dur="20s" repeatCount="indefinite" />
+  </line>
+</svg>

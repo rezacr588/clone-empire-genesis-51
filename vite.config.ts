@@ -19,4 +19,12 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  // Explicitly configure asset handling
+  build: {
+    assetsDir: 'assets',
+    sourcemap: true,
+    chunkSizeWarningLimit: 1000,
+  },
+  // Ensure public directory is properly handled
+  publicDir: 'public',
 }));

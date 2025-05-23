@@ -1,95 +1,87 @@
 @import './styles/fonts.css';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  /* Brandbook CSS Variables - Enhanced for Sci-Fi Dark Theme */
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222 13% 18%;
+    --background: 220 13% 10%; /* Deep space blue/dark grey */
+    --foreground: 210 40% 98%; /* Very light silver/off-white */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222 13% 18%;
+    --card: 220 13% 15%; /* Slightly lighter deep space blue */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 13% 18%;
+    --popover: 220 13% 12%; /* Darker popover for depth */
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 196 73% 48%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 180 100% 50%; /* Vibrant Cyan (Empire Cyan) */
+    --primary-foreground: 220 13% 5%; /* Darkest for high contrast on cyan */
 
-    --secondary: 210 40% 96%;
-    --secondary-foreground: 222 13% 18%;
+    --secondary: 210 15% 30%; /* Medium bluish-grey (like empire-medium/canyon) */
+    --secondary-foreground: 210 40% 98%; /* Light silver for secondary text */
 
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 210 15% 50%; /* Lighter bluish-grey (like empire-silver) */
+    --muted-foreground: 210 40% 85%; /* Lighter silver for muted text, good contrast on dark */
 
-    --accent: 196 73% 48%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 180 100% 60%; /* Slightly lighter Cyan for accents */
+    --accent-foreground: 220 13% 5%;
 
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 198 41% 19%; /* empire-canyon-deep HSL */
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 196 73% 48%;
+    --border: 210 15% 25%; /* Bluish-grey border (subtle canyon/medium) */
+    --input: 210 15% 25%; /* Similar to border for input fields */
+    --ring: 180 100% 55%; /* Cyan ring for focus states */
 
-    --radius: 0.75rem;
+    --radius: 0.5rem; /* Standardized border radius, can be adjusted for more angular later */
 
-    --sidebar-background: 240 5% 10%;
-    --sidebar-foreground: 240 5% 95%;
-    --sidebar-primary: 196 73% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 4% 16%;
-    --sidebar-accent-foreground: 240 5% 96%;
-    --sidebar-border: 240 4% 16%;
-    --sidebar-ring: 217 91% 60%;
+    /* Sidebar variables aligned with the main theme */
+    --sidebar-background: 220 13% 8%; /* Slightly darker for sidebar */
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 220 13% 5%;
+    --sidebar-accent: 180 100% 60%;
+    --sidebar-accent-foreground: 220 13% 5%;
+    --sidebar-border: 210 15% 20%;
+    --sidebar-ring: 180 100% 55%;
   }
 
   .dark {
-    --background: 220 13% 18%;
+    /* These are now effectively the default values set in :root. 
+       This block can be used for specific dark-mode overrides if a light theme is introduced later. 
+       For now, it ensures consistency. */
+    --background: 220 13% 10%;
     --foreground: 210 40% 98%;
-
-    --card: 222 13% 18%;
+    --card: 220 13% 15%;
     --card-foreground: 210 40% 98%;
-
-    --popover: 222 13% 18%;
+    --popover: 220 13% 12%;
     --popover-foreground: 210 40% 98%;
-
-    --primary: 196 73% 48%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 217 32% 17%;
+    --primary: 180 100% 50%;
+    --primary-foreground: 220 13% 5%;
+    --secondary: 210 15% 30%;
     --secondary-foreground: 210 40% 98%;
-
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
-
-    --accent: 196 73% 48%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62% 30%;
+    --muted: 210 15% 50%;
+    --muted-foreground: 210 40% 85%;
+    --accent: 180 100% 60%;
+    --accent-foreground: 220 13% 5%;
+    --destructive: 198 41% 19%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 240 5% 26%;
-    --input: 217 32% 17%;
-    --ring: 196 73% 48%;
+    --border: 210 15% 25%;
+    --input: 210 15% 25%;
+    --ring: 180 100% 55%;
   }
 }
 
 @layer base {
   * {
-    @apply border-border selection:bg-empire-cyan/30 selection:text-foreground;
-  }
-  
-  html, body {
-    font-family: 'Exo 2', sans-serif;
+    @apply border-border selection:bg-primary/30 selection:text-primary-foreground;
   }
   
   body {
-    @apply bg-white text-foreground antialiased dark:bg-empire-darkest dark:text-white;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    @apply bg-background text-foreground antialiased font-sans; /* Using Exo for a more sci-fi feel */
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03"; /* Keep ligatures */
   }
   
   html {
@@ -97,7 +89,14 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Exo 2', sans-serif;
+    @apply font-heading text-foreground; /* Ensure headings use main foreground color */
+  }
+
+  p, li {
+    @apply text-base leading-relaxed text-secondary-foreground; /* Use secondary for less emphasis */
+  }
+  strong, b {
+    @apply font-semibold text-foreground; /* Strong text uses main foreground */
   }
 }
 
@@ -106,34 +105,35 @@
     text-wrap: balance;
   }
   
-  .text-gradient {
+  .text-gradient { /* General purpose text gradient */
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   
-  .glass-effect {
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    background-color: rgba(255, 255, 255, 0.6);
-    border: 1px solid rgba(30, 174, 219, 0.2);
+  .text-gradient-cyan-silver { /* Specific gradient for sci-fi theme */
+    @apply text-gradient bg-gradient-to-r from-primary to-muted;
+  }
+
+  .glass-effect { /* More refined glass effect for sci-fi */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: hsl(var(--card) / 0.6);
+    border: 1px solid hsl(var(--border) / 0.2);
+    border-radius: var(--radius);
   }
   
-  .dark .glass-effect {
-    background-color: rgba(10, 10, 15, 0.6);
-  }
-  
-  .text-shadow-sm {
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  .text-shadow-sm { /* Subtle text shadow for depth */
+    text-shadow: 0 1px 3px hsl(var(--background) / 0.5);
   }
   
   .hover-lift {
-    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+    transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
   }
   
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: 0 10px 25px -5px rgba(30, 174, 219, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 25px -8px hsl(var(--primary) / 0.15), 0 8px 10px -10px hsl(var(--background) / 0.3);
   }
   
   .scrollbar-none {
@@ -144,168 +144,156 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
-  
-  .cyan-glow {
-    box-shadow: 0 0 20px rgba(30, 174, 219, 0.3);
+
+  .glass-card { /* Sci-fi themed glass card */
+    @apply glass-effect p-6 shadow-xl shadow-black/20; /* Added padding and more pronounced shadow */
   }
-  
-  .dark .cyan-glow {
-    box-shadow: 0 0 20px rgba(30, 174, 219, 0.6);
-  }
-  
-  .apple-blur {
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.75);
-  }
-  
-  .dark .apple-blur {
-    background-color: rgba(10, 10, 15, 0.75);
-  }
-  
-  .ai-image-glow {
-    box-shadow: 0 0 30px rgba(30, 174, 219, 0.2);
-    position: relative;
-  }
-  
-  .dark .ai-image-glow {
-    box-shadow: 0 0 30px rgba(30, 174, 219, 0.4);
-  }
-  
-  .ai-image-glow::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(45deg, rgba(30, 174, 219, 0.5), transparent, rgba(237, 30, 121, 0.5), transparent);
-    border-radius: inherit;
-    z-index: -1;
-    animation: rotate 6s linear infinite;
-  }
-  
-  @keyframes rotate {
-    0% {
-      background-position: 0% 0%;
-    }
-    100% {
-      background-position: 300% 300%;
-    }
-  }
-  
-  .neo-glass {
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(30, 174, 219, 0.15);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
-  }
-  
-  .dark .neo-glass {
-    background: rgba(10, 10, 15, 0.5);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-  }
-  
-  /* New animations and utilities */
-  @keyframes scan {
-    0% {
-      transform: translateY(-100%);
-    }
-    100% {
-      transform: translateY(1000%);
-    }
-  }
-  
-  .animate-scan {
-    animation: scan 3s linear infinite;
-  }
-  
-  .text-outlined {
-    -webkit-text-stroke: 1px rgba(0, 0, 0, 0.3);
-    text-stroke: 1px rgba(0, 0, 0, 0.3);
-  }
-  
-  .dark .text-outlined {
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-    text-stroke: 1px rgba(255, 255, 255, 0.3);
-  }
-  
-  .bg-noise {
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noisy'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noisy)'/%3E%3C/svg%3E");
-    opacity: 0.05;
-  }
-  
-  /* Improved glassmorphism */
-  .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(240, 240, 240, 0.8) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(30, 174, 219, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
-  }
-  
-  .dark .glass-card {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
-  }
-  
-  .glass-button {
-    background: rgba(30, 174, 219, 0.1);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    border: 1px solid rgba(30, 174, 219, 0.2);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+
+  .glass-button { /* Sci-fi themed glass button */
+    @apply glass-effect px-5 py-2.5 text-sm font-medium text-foreground hover-lift;
+    border-color: hsl(var(--primary) / 0.3); /* Cyan border */
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
   
   .glass-button:hover {
-    background: rgba(30, 174, 219, 0.2);
-    border: 1px solid rgba(30, 174, 219, 0.3);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    background-color: hsl(var(--primary) / 0.15);
+    border-color: hsl(var(--primary) / 0.5);
+  }
+
+  .glass-button:active {
+    transform: translateY(-1px);
+    background-color: hsl(var(--primary) / 0.2);
   }
   
-  .dark .glass-button:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  .button-primary { /* Primary action button, cyan based */
+    @apply bg-primary text-primary-foreground hover:bg-primary/90 active:bg-primary/80;
+    @apply px-6 py-2.5 text-sm font-semibold rounded-md shadow-lg shadow-primary/20 hover-lift;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
   
-  /* Text reveal animation */
-  @keyframes text-reveal {
-    0% {
-      clip-path: inset(0 100% 0 0);
-    }
-    100% {
-      clip-path: inset(0 0 0 0);
-    }
+  .button-primary:active {
+     transform: translateY(-1px);
   }
-  
-  .animate-text-reveal {
-    animation: text-reveal 1s cubic-bezier(0.77, 0, 0.175, 1) forwards;
-  }
-  
-  /* Artistic border */
-  .artistic-border {
+
+  .artistic-border { /* For highlighted elements, more sci-fi */
     position: relative;
+    border-radius: var(--radius); /* Use theme radius */
   }
   
   .artistic-border::before {
     content: '';
     position: absolute;
-    inset: -1px;
-    background: linear-gradient(120deg, rgba(30, 174, 219, 0), rgba(30, 174, 219, 0.5) 50%, rgba(30, 174, 219, 0) 100%);
-    z-index: -1;
+    inset: -1.5px; /* Slightly thicker border appearance */
+    background: linear-gradient(145deg, hsl(var(--primary)/0.5), hsl(var(--secondary)/0.3), hsl(var(--primary)/0.5));
     border-radius: inherit;
+    z-index: -1;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.4s ease-in-out;
+    animation: pulse-border 4s infinite ease-in-out; /* Subtle pulse animation */
   }
   
   .artistic-border:hover::before {
-    opacity: 1;
+    opacity: 0.8; /* More visible on hover */
+  }
+
+  @keyframes pulse-border {
+    0%, 100% { filter: brightness(0.8) saturate(1.2); }
+    50% { filter: brightness(1.2) saturate(1.5); }
   }
   
-  .bg-cyan-glow {
-    background: radial-gradient(circle, rgba(30,174,219,0.08) 0%, rgba(255,255,255,0) 70%);
+  .bg-silver-glow { 
+    background: radial-gradient(circle, hsl(var(--muted)/0.1) 0%, transparent 60%);
   }
   
-  .dark .bg-cyan-glow {
-    background: radial-gradient(circle, rgba(30,174,219,0.15) 0%, rgba(5,5,5,0) 70%);
+  .text-gradient-silver-cyan { /* Re-affirm this gradient with new HSL variables */
+    @apply text-gradient bg-gradient-to-r from-muted to-primary;
+  }
+
+  .text-glow { /* Cyan glow, more intense for sci-fi */
+    text-shadow: 0 0 8px hsl(var(--primary) / 0.6), 0 0 16px hsl(var(--primary) / 0.4), 0 0 24px hsl(var(--primary) / 0.2);
+  }
+  
+  .cyan-border { /* Utility for explicit cyan border */
+    border: 1px solid hsl(var(--primary) / 0.5);
+  }
+  
+  .cyan-shadow { /* Utility for cyan shadow */
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.15);
+  }
+
+  @keyframes scan {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  .animate-scan { /* For a subtle scanline effect on elements */
+      position: relative;
+      overflow: hidden;
+  }
+  .animate-scan::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px; /* Thinner scanline */
+      background: hsl(var(--primary) / 0.4); /* Cyan scanline */
+      animation: scan 3s infinite linear;
+      opacity: 0.7;
+      z-index: 1; /* Ensure it's above content but below interactive elements if needed */
+  }
+
+  .text-outlined { /* For special headings or text elements */
+    -webkit-text-stroke: 1px hsl(var(--primary) / 0.7);
+    -webkit-text-fill-color: transparent;
+    paint-order: stroke fill; /* Ensures stroke is behind fill if fill is applied */
+  }
+  .dark .text-outlined { /* Ensure it works in dark mode - might be redundant if base is dark */
+    -webkit-text-stroke: 1px hsl(var(--primary) / 0.7);
+  }
+
+  .bg-noise { /* Subtle noise background for texture */
+    position: relative;
+  }
+  .bg-noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22100%22%20height%3D%22100%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cfilter%20id%3D%22noise%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.8%22%20numOctaves%3D%223%22%20stitchTiles%3D%22stitch%22/%3E%3CfeComponentTransfer%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%220.03%22/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect%20width%3D%22100%25%22%20height%3D%22100%25%22%20filter%3D%22url(%23noise)%22/%3E%3C/svg%3E');
+    opacity: 0.05; /* Very subtle */
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  @keyframes text-reveal { /* For futuristic text reveal effects */
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+  }
+  .animate-text-reveal {
+    animation: text-reveal 1s forwards ease-out;
+  }
+
+  /* Consistent Section Padding */
+  section {
+    @apply px-4 py-16 md:py-20 lg:py-24; /* Consistent padding for sections */
+    position: relative; /* Ensure relative positioning for overlays/backgrounds */
+  }
+  
+  /* Spacing between sections */
+  section + section {
+    @apply mt-0; /* Remove default browser margins, manage spacing with padding or explicit margins */
+  }
+
+  /* Utility for smaller section padding */
+  .section-sm {
+    @apply py-10 md:py-12 lg:py-16;
+  }
+  
+  /* Utility for larger section padding */
+  .section-lg {
+    @apply py-20 md:py-24 lg:py-32;
   }
 }
+
+/* Add Exo 2 font import directly if not handled by fonts.css or if more control is needed */
+/* @import url('https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap'); */
+/* Ensure fonts.css correctly loads Exo 2 and a suitable heading font if different */

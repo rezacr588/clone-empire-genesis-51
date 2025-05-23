@@ -3,10 +3,8 @@ import type { Config } from "tailwindcss";
 export default {
 	darkMode: ["class"],
 	content: [
-		"./pages/**/*.{ts,tsx}",
-		"./components/**/*.{ts,tsx}",
-		"./app/**/*.{ts,tsx}",
-		"./src/**/*.{ts,tsx}",
+		"./index.html",
+		"./src/**/*.{js,ts,jsx,tsx,css,html}",
 	],
 	prefix: "",
 	theme: {
@@ -52,6 +50,23 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				empire: {
+					black: "#0e0e0e",
+					darkest: "#0a0a0f",
+					dark: "#141419",
+					medium: "#2a2a32",
+					canyon: "#2a918f",
+					'canyon-deep': "#1d3a46",
+					cyan: "#44f9ff",
+					ghost: "#d9d9d9",
+					steel: "#7A8C94",
+					gunmetal: "#2a3439",
+					silver: "#BCC6CC",
+					light: "#f5f5f5",
+					white: "#f5f5f5",
+					red: "#e24a6e",
+					purple: "#8a54fd",
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -62,23 +77,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-                // Updated color palette
-                empire: {
-                    light: "#F5F5F5",       // Light color from palette
-                    medium: "#BCC6CC",      // Medium color from palette
-                    silver: "#D9D9D9",      // Silver color from palette
-                    red: "#E10600",         // Red color from palette
-                    "red-dark": "#BE0500",  // Darker red for hover states
-                    dark: "#0A0A0F",        // Keep deep space dark
-                    darker: "#06060A",      // Keep darker backgrounds
-                    darkest: "#030305",     // Keep almost black
-                    charcoal: "#1A1F2C",    // Keep charcoal for cards
-                    cyan: "#1EAEDB",        // Keep neon cyan for accents
-                    darkCyan: "#0F87A7",    // Keep darker cyan
-                    lightCyan: "#33C3F0",   // Keep lighter cyan
-                    lime: "#00E676",        // Neon lime for accents
-                    purple: "#7B61FF",      // Futuristic purple accent
-                }
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -127,7 +125,10 @@ export default {
                         opacity: '1'
                     },
                     '50%': {
-                        opacity: '0.9'
+                        opacity: '0.7'
+                    },
+                    '100%': {
+                        opacity: '1'
                     }
                 },
                 'float': {
@@ -135,7 +136,7 @@ export default {
                         transform: 'translateY(0)'
                     },
                     '50%': {
-                        transform: 'translateY(-10px)'
+                        transform: 'translateY(-8px)'
                     }
                 },
                 'gradient-x': {
@@ -152,21 +153,29 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
                 'fade-in': 'fade-in 0.6s ease-out',
                 'slide-up': 'slide-up 0.8s ease-out',
-                'pulse-subtle': 'pulse-subtle 3s infinite ease-in-out',
-                'float': 'float 6s infinite ease-in-out',
-                'gradient-x': 'gradient-x 8s ease infinite'
+                'pulse-subtle': 'pulse-subtle 2.5s infinite ease-in-out',
+                'float': 'float 5s infinite ease-in-out',
+                'gradient-x': 'gradient-x 6s ease infinite'
 			},
             backgroundImage: {
-                'glass-gradient': 'linear-gradient(109.6deg, rgba(17,24,39,0.7) 11.2%, rgba(9,13,20,0.7) 91.1%)',
-                'hero-gradient': 'linear-gradient(180deg, rgba(10,10,15,0.8) 0%, rgba(5,5,5,1) 100%)',
-                'card-gradient': 'linear-gradient(to top, rgba(10,11,15,0.7) 0%, rgba(15,15,22,0.4) 100%)',
-                'cyan-glow': 'radial-gradient(circle, rgba(30,174,219,0.15) 0%, rgba(5,5,5,0) 70%)',
+                'minimal-dark-gradient': 'linear-gradient(180deg, #141419 0%, #0a0a0f 100%)',
+                'minimal-light-gradient': 'linear-gradient(180deg, #f5f5f5 0%, #2a2a32 100%)',
+                'canyon-accent-gradient': 'linear-gradient(to right, #2a918f, rgba(42, 145, 143, 0.7))',
+                'silver-subtle-gradient': 'linear-gradient(to bottom, rgba(217, 217, 217, 0.1) 0%, rgba(188, 198, 204, 0.05) 100%)',
+                'vision-glass-dark': 'linear-gradient(135deg, rgba(10, 10, 15, 0.6) 0%, rgba(3, 3, 5, 0.5) 100%)',
+                'vision-glass-light': 'linear-gradient(135deg, rgba(245, 245, 245, 0.7) 0%, rgba(217, 217, 217, 0.6) 100%)',
+                'gradient-silver-to-medium': 'linear-gradient(to right, #BCC6CC, #2a2a32)',
+                'gradient-canyon-to-dark': 'linear-gradient(to right, #2a918f, #1d3a46)',
             },
             fontFamily: {
-                'sans': ['Exo 2', 'Inter', 'SF Pro Display', 'system-ui', 'sans-serif'],
-                'exo': ['Exo 2', 'sans-serif'],
+                sans: ['Exo 2', 'Exo 2 Fallback', 'system-ui', 'sans-serif'],
+                heading: ['Space Grotesk', 'Space Grotesk Fallback', 'system-ui', 'sans-serif'],
+                mono: ['SF Mono', 'Consolas', 'monospace'],
             }
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require('@tailwindcss/typography'),
+		require('tailwindcss-animate')
+	],
 } satisfies Config;

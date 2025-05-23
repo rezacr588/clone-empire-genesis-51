@@ -109,7 +109,7 @@ const About = () => {
             <div>
               <div className="relative rounded-lg overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=1200" 
+                  src="/images/unsplash/photo-1486718448742-163732cd1544" 
                   alt="Abstract wavy structure representing AI" 
                   className="w-full h-auto"
                 />

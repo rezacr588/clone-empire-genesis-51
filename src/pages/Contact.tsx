@@ -3,27 +3,23 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { ArrowRight, Mail, MapPin, Phone, Calendar, User } from 'lucide-react';
+import { ArrowRight, Mail, Send, Zap, Calendar } from 'lucide-react';
 import Layout from "@/components/Layout";
 import { toast } from "@/hooks/use-toast";
-import CalendlyInline from "@/components/CalendlyInline";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TEAM } from "@/lib/config";
+import { GoHighLevelCalendar } from "@/components/calendar";
+import { cn } from "@/lib/utils";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    company: "",
     interest: "",
     message: "",
-    consent: false
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [imageError, setImageError] = useState(false);
-  
+  const [showCalendar, setShowCalendar] = useState(false);
+
   useEffect(() => {
     document.title = "Contact | The Clone Empire";
   }, []);
@@ -37,295 +33,197 @@ const Contact = () => {
     setFormData(prev => ({ ...prev, interest: value }));
   };
   
-  const handleCheckboxChange = (checked: boolean) => {
-    setFormData(prev => ({ ...prev, consent: checked }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      toast({
-        title: "Message received",
-        description: "We'll get back to you as soon as possible!",
-      });
-      
-      setIsSubmitting(false);
-      setFormData({
-        name: "",
-        email: "",
-        company: "",
-        interest: "",
-        message: "",
-        consent: false
-      });
-    }, 1500);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1500));
+
+    // Replace with actual API call:
+    // try {
+    //   const response = await fetch('/api/contact', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify(formData),
+    //   });
+    //   if (!response.ok) throw new Error('Network response was not ok.');
+    //   toast({
+    //     title: "Message Sent!",
+    //     description: "We've received your inquiry and will get back to you shortly.",
+    //     variant: "default", // Or a custom success variant
+    //   });
+    //   setFormData({ name: "", email: "", interest: "", message: "" });
+    // } catch (error) {
+    //   toast({
+    //     title: "Submission Error",
+    //     description: "Could not send message. Please try again or email us directly.",
+    //     variant: "destructive",
+    //   });
+    // } finally {
+    //   setIsSubmitting(false);
+    // }
+
+    toast({
+      title: "Message Sent!",
+      description: "We've received your inquiry and will get back to you shortly.",
+    });
+    
+    setFormData({ name: "", email: "", interest: "", message: "" });
+    setIsSubmitting(false);
   };
   
-  const handleImageError = () => {
-    setImageError(true);
-  };
-  
+  if (showCalendar) {
+    return (
+      <Layout>
+        <section className="py-20 md:py-28 min-h-screen flex flex-col items-center justify-center bg-empire-darkest relative overflow-hidden">
+          {/* Subtle animated background elements */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute top-0 left-0 w-1/2 h-1/2 bg-empire-cyan/5 rounded-full blur-[150px] opacity-30 animate-pulse-subtle"></div>
+            <div className="absolute bottom-0 right-0 w-1/3 h-2/3 bg-empire-purple/5 rounded-full blur-[120px] opacity-20 animate-float"></div>
+          </div>
+
+          <div className="container mx-auto px-4 relative z-10 flex flex-col items-center">
+            <Button 
+              variant="outline" 
+              onClick={() => setShowCalendar(false)}
+              className="mb-8 border-empire-medium/30 hover:border-empire-cyan hover:text-empire-cyan transition-colors"
+            >
+              Back to Contact Form
+            </Button>
+            <h2 className="text-3xl md:text-4xl font-medium mb-8 text-center text-empire-light">
+              Schedule a <span className="text-gradient bg-gradient-to-r from-empire-cyan to-empire-purple">Consultation</span>
+            </h2>
+            <div className="w-full max-w-4xl bg-empire-dark/50 p-2 md:p-4 rounded-xl shadow-2xl border border-empire-medium/20 backdrop-blur-md">
+              <GoHighLevelCalendar calendarId="discovery-call" styles={{ height: '750px' }} />
+            </div>
+          </div>
+        </section>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="py-20 md:py-28 min-h-screen flex items-center justify-center bg-empire-darkest relative overflow-hidden">
+        {/* Subtle animated background elements */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+            <div className="absolute -top-[20%] -left-[20%] w-2/3 h-2/3 bg-empire-cyan/10 rounded-full blur-[150px] opacity-20 animate-pulse-subtle animation-delay-2000"></div>
+            <div className="absolute -bottom-[20%] -right-[20%] w-2/3 h-2/3 bg-empire-purple/10 rounded-full blur-[150px] opacity-20 animate-float"></div>
+        </div>
+
         <div className="container mx-auto px-4 relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium mb-6">
-              <span className="bg-gradient-to-r from-empire-silver via-empire-red to-empire-silver bg-clip-text text-transparent">
-                Get in Touch
-              </span>
+          <div className="max-w-2xl mx-auto text-center">
+            <Zap className="h-12 w-12 text-empire-cyan mx-auto mb-6 opacity-80" />
+            <h1 className="text-4xl md:text-5xl font-medium mb-6 text-empire-light leading-tight">
+              Connect <span className="text-gradient bg-gradient-to-r from-empire-cyan via-empire-purple to-empire-red">With Us</span>
             </h1>
-            <p className="text-lg md:text-xl text-empire-medium mb-8 max-w-2xl mx-auto">
-              Ready to revolutionize your customer interactions with AI? Our team is here to help you get started.
+            <p className="text-lg text-empire-silver mb-10 md:mb-12 max-w-xl mx-auto opacity-80">
+              Have a question or a project in mind? Drop us a line or schedule a call. We're ready to build the future, together.
             </p>
           </div>
-        </div>
-        
-        {/* Background elements */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-empire-red/5 blur-[150px] rounded-full"></div>
-          <div className="absolute bottom-0 left-0 w-1/3 h-2/3 bg-empire-charcoal/20 blur-[100px] rounded-full"></div>
-        </div>
-      </section>
-      
-      {/* Contact Options */}
-      <section className="py-8 relative">
-        <div className="container mx-auto px-4">
-          <Tabs defaultValue="form" className="w-full">
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8 bg-empire-charcoal">
-              <TabsTrigger value="form" className="data-[state=active]:bg-empire-red data-[state=active]:text-white">Contact Form</TabsTrigger>
-              <TabsTrigger value="schedule" className="data-[state=active]:bg-empire-red data-[state=active]:text-white">Schedule a Call</TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="form">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Contact Info with Image */}
-                <div>
-                  <div className="relative mb-8">
-                    <div className="aspect-[3/4] rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-empire-charcoal to-empire-darker">
-                      {imageError ? (
-                        <img 
-                          src="/images/team/placeholder.svg" 
-                          alt="Team Member"
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <img 
-                          src="/images/team/customer-success-manager.jpg" 
-                          alt={`${TEAM.CONTACT.NAME} - ${TEAM.CONTACT.ROLE}`}
-                          className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
-                          onError={handleImageError}
-                          loading="lazy"
-                        />
-                      )}
-                    </div>
-                    <div className="absolute -bottom-4 left-0 right-0 mx-auto text-center py-4 px-6 bg-empire-red/90 backdrop-blur-sm rounded-lg max-w-md shadow-lg shadow-empire-red/20">
-                      <h3 className="text-xl font-semibold mb-1">{TEAM.CONTACT.NAME}</h3>
-                      <p className="text-sm text-empire-light">{TEAM.CONTACT.ROLE}</p>
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-6 mt-12 bg-empire-darker/50 p-6 rounded-xl border border-empire-charcoal/30">
-                    <h3 className="text-xl font-medium mb-4 text-empire-cyan">Contact Information</h3>
-                    
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 rounded-full bg-empire-charcoal flex items-center justify-center mr-4">
-                        <Mail className="h-5 w-5 text-empire-red" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-medium mb-1">Email Us</h3>
-                        <p className="text-empire-medium">info@cloneempire.ai</p>
-                        <p className="text-empire-medium">support@cloneempire.ai</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 rounded-full bg-empire-charcoal flex items-center justify-center mr-4">
-                        <Phone className="h-5 w-5 text-empire-red" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-medium mb-1">Call Us</h3>
-                        <p className="text-empire-medium">+1 (555) 123-4567</p>
-                        <p className="text-empire-medium">Monday - Friday, 9AM - 6PM EST</p>
-                      </div>
-                    </div>
-                    
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 rounded-full bg-empire-charcoal flex items-center justify-center mr-4">
-                        <MapPin className="h-5 w-5 text-empire-red" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-medium mb-1">Visit Us</h3>
-                        <p className="text-empire-medium">123 AI Boulevard</p>
-                        <p className="text-empire-medium">San Francisco, CA 94105</p>
-                      </div>
-                    </div>
 
-                    <div className="flex items-start">
-                      <div className="w-12 h-12 rounded-full bg-empire-charcoal flex items-center justify-center mr-4">
-                        <Calendar className="h-5 w-5 text-empire-red" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-medium mb-1">Schedule a Call</h3>
-                        <p className="text-empire-medium">Use our calendar to book a demo or consultation</p>
-                        <Button 
-                          variant="link" 
-                          className="text-empire-red p-0 h-auto"
-                          onClick={() => (document.querySelector('[data-value="schedule"]') as HTMLElement | null)?.click()}
-                        >
-                          Schedule now <ArrowRight className="ml-1 h-4 w-4 inline" />
-                        </Button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Form */}
-                <div>
-                  <div className="bg-empire-darker border border-empire-charcoal/50 rounded-xl p-8 shadow-lg">
-                    <h3 className="text-2xl font-medium mb-6">Send us a message</h3>
-                    
-                    <form onSubmit={handleSubmit}>
-                      <div className="space-y-6">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div>
-                            <label htmlFor="name" className="block text-sm font-medium mb-1">Full Name</label>
-                            <Input 
-                              id="name"
-                              name="name"
-                              placeholder="John Doe" 
-                              value={formData.name}
-                              onChange={handleChange}
-                              className="bg-empire-charcoal border-empire-charcoal/50 focus:border-empire-red"
-                              required
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="email" className="block text-sm font-medium mb-1">Email</label>
-                            <Input 
-                              id="email"
-                              name="email"
-                              type="email" 
-                              placeholder="john@example.com" 
-                              value={formData.email}
-                              onChange={handleChange}
-                              className="bg-empire-charcoal border-empire-charcoal/50 focus:border-empire-red"
-                              required
-                            />
-                          </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          <div>
-                            <label htmlFor="company" className="block text-sm font-medium mb-1">Company</label>
-                            <Input 
-                              id="company" 
-                              name="company"
-                              placeholder="Your Company" 
-                              value={formData.company}
-                              onChange={handleChange}
-                              className="bg-empire-charcoal border-empire-charcoal/50 focus:border-empire-red"
-                            />
-                          </div>
-                          <div>
-                            <label htmlFor="interest" className="block text-sm font-medium mb-1">Interest</label>
-                            <Select value={formData.interest} onValueChange={handleSelectChange}>
-                              <SelectTrigger className="bg-empire-charcoal border-empire-charcoal/50 focus:border-empire-red">
-                                <SelectValue placeholder="Select interest" />
-                              </SelectTrigger>
-                              <SelectContent className="bg-empire-darker border-empire-charcoal/50">
-                                <SelectItem value="sales">Sales Clone</SelectItem>
-                                <SelectItem value="support">Support Clone</SelectItem>
-                                <SelectItem value="appointment">Appointment Setting</SelectItem>
-                                <SelectItem value="custom">Custom Solution</SelectItem>
-                                <SelectItem value="partnership">Partnership</SelectItem>
-                              </SelectContent>
-                            </Select>
-                          </div>
-                        </div>
-                        
-                        <div>
-                          <label htmlFor="message" className="block text-sm font-medium mb-1">Message</label>
-                          <Textarea 
-                            id="message"
-                            name="message"
-                            placeholder="Tell us how we can help..." 
-                            rows={4}
-                            value={formData.message}
-                            onChange={handleChange}
-                            className="bg-empire-charcoal border-empire-charcoal/50 focus:border-empire-red resize-none"
-                            required
-                          />
-                        </div>
-                        
-                        <div className="flex items-start space-x-2">
-                          <Checkbox 
-                            id="consent" 
-                            checked={formData.consent}
-                            onCheckedChange={handleCheckboxChange}
-                            className="mt-0.5 data-[state=checked]:bg-empire-red data-[state=checked]:border-empire-red"
-                          />
-                          <label
-                            htmlFor="consent"
-                            className="text-sm font-medium leading-none text-empire-silver"
-                          >
-                            I agree to be contacted about The Clone Empire products and services
-                          </label>
-                        </div>
-                        
-                        <Button 
-                          type="submit" 
-                          className="bg-empire-red hover:bg-empire-red/90 text-white w-full"
-                          disabled={isSubmitting}
-                        >
-                          {isSubmitting ? "Sending..." : "Send Message"}
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+          <div className="max-w-xl mx-auto bg-empire-dark/30 backdrop-blur-md p-6 md:p-10 rounded-xl shadow-2xl border border-empire-medium/20">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium mb-1.5 text-empire-silver">Full Name</label>
+                <Input 
+                  id="name"
+                  name="name"
+                  placeholder="Your Name" 
+                  value={formData.name}
+                  onChange={handleChange}
+                  className="bg-empire-dark/50 border-empire-medium/30 focus:border-empire-cyan focus:ring-empire-cyan/50 placeholder:text-empire-medium/70 text-empire-light"
+                  required
+                />
               </div>
-            </TabsContent>
+              
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium mb-1.5 text-empire-silver">Email Address</label>
+                <Input 
+                  id="email"
+                  name="email"
+                  type="email" 
+                  placeholder="you@domain.com" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  className="bg-empire-dark/50 border-empire-medium/30 focus:border-empire-cyan focus:ring-empire-cyan/50 placeholder:text-empire-medium/70 text-empire-light"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="interest" className="block text-sm font-medium mb-1.5 text-empire-silver">Primary Interest</label>
+                <Select value={formData.interest} onValueChange={handleSelectChange}>
+                  <SelectTrigger className="w-full bg-empire-dark/50 border-empire-medium/30 focus:border-empire-cyan focus:ring-empire-cyan/50 text-empire-light placeholder:text-empire-medium data-[placeholder]:text-empire-medium">
+                    <SelectValue placeholder="How can we help you?" />
+                  </SelectTrigger>
+                  <SelectContent className="bg-empire-darker border-empire-medium/50 text-empire-light">
+                    <SelectItem value="ai-agents" className="hover:bg-empire-cyan/10 focus:bg-empire-cyan/20">AI Agent Development</SelectItem>
+                    <SelectItem value="automation" className="hover:bg-empire-cyan/10 focus:bg-empire-cyan/20">Process Automation</SelectItem>
+                    <SelectItem value="consulting" className="hover:bg-empire-cyan/10 focus:bg-empire-cyan/20">AI Strategy Consulting</SelectItem>
+                    <SelectItem value="partnership" className="hover:bg-empire-cyan/10 focus:bg-empire-cyan/20">Partnership Opportunities</SelectItem>
+                    <SelectItem value="other" className="hover:bg-empire-cyan/10 focus:bg-empire-cyan/20">Other Inquiry</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+              
+              <div>
+                <label htmlFor="message" className="block text-sm font-medium mb-1.5 text-empire-silver">Your Message</label>
+                <Textarea 
+                  id="message"
+                  name="message"
+                  placeholder="Tell us about your project or question..." 
+                  value={formData.message}
+                  onChange={handleChange}
+                  className="bg-empire-dark/50 border-empire-medium/30 focus:border-empire-cyan focus:ring-empire-cyan/50 min-h-[120px] placeholder:text-empire-medium/70 text-empire-light"
+                  required
+                  rows={5}
+                />
+              </div>
+              
+              <Button 
+                type="submit" 
+                disabled={isSubmitting}
+                className={cn(
+                  "w-full text-lg py-3 bg-gradient-to-r from-empire-cyan to-empire-purple text-empire-darkest font-semibold hover:opacity-90 transition-opacity duration-300 focus:ring-2 focus:ring-offset-2 focus:ring-offset-empire-darkest focus:ring-empire-cyan",
+                  isSubmitting && "opacity-70 cursor-not-allowed"
+                )}
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  <>
+                    Send Message <Send className="ml-2 h-5 w-5" />
+                  </>
+                )}
+              </Button>
+            </form>
+
+            <div className="mt-10 text-center">
+                <p className="text-empire-silver mb-3">Or, schedule a direct consultation:</p>
+                <Button 
+                    variant="outline" 
+                    onClick={() => setShowCalendar(true)}
+                    className="border-empire-cyan/50 text-empire-cyan hover:bg-empire-cyan/10 hover:border-empire-cyan transition-colors group"
+                >
+                    Schedule a Call <Calendar className="ml-2 h-4 w-4 group-hover:scale-110 transition-transform" />
+                </Button>
+            </div>
             
-            <TabsContent value="schedule">
-              <div className="max-w-4xl mx-auto">
-                <div className="bg-empire-darker border border-empire-charcoal/50 rounded-xl p-6 shadow-lg">
-                  <h3 className="text-2xl font-medium mb-6 text-center">Schedule a Demo or Consultation</h3>
-                  <CalendlyInline 
-                    url="https://calendly.com/clone-empire/demo" 
-                    styles={{ height: '750px' }} 
-                    className="w-full"
-                  />
-                </div>
-              </div>
-            </TabsContent>
-          </Tabs>
-        </div>
-      </section>
-      
-      {/* Map Section */}
-      <section className="py-20 bg-empire-darker relative">
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-empire-medium/20 to-transparent"></div>
-        
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold mb-8 text-center">Find Us</h2>
-          
-          <div className="rounded-xl overflow-hidden h-96 w-full max-w-5xl mx-auto border border-empire-charcoal/50 shadow-lg">
-            <iframe
-              title="The Clone Empire Office Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d100939.98555098464!2d-122.50764066075955!3d37.75781499697245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80859a6d00690021%3A0x4a501367f076adff!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1656543941133!5m2!1sen!2sus"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen={false}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <div className="mt-12 pt-8 border-t border-empire-medium/20 text-center">
+                <p className="text-sm text-empire-medium">
+                    You can also reach us directly at:
+                </p>
+                <a href="mailto:connect@cloneempire.ai" className="text-empire-cyan hover:text-empire-purple transition-colors group mt-1 inline-flex items-center">
+                    connect@cloneempire.ai
+                    <Mail className="ml-1.5 h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity"/>
+                </a>
+            </div>
+
           </div>
         </div>
       </section>

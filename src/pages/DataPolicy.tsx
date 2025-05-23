@@ -16,7 +16,7 @@ const DataPolicy = () => {
           Last Updated: November 15, 2023
         </p>
 
-        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-red prose-a:text-empire-lime">
+        <div className="prose prose-lg dark:prose-invert prose-headings:text-empire-red prose-a:text-empire-cyan">
           <p>
             At The Clone Empire, we believe in transparency about how we collect, use, and share data. This Data Policy outlines our practices regarding the data processed by our AI agent clones and platform.
           </p>

@@ -106,13 +106,13 @@ const Careers = () => {
                   </p>
                   <div className="grid md:grid-cols-2 gap-x-8 mb-6">
                       <div>
-                          <h4 className="text-lg font-semibold text-empire-dark dark:text-empire-lime mb-2">Key Responsibilities:</h4>
+                          <h4 className="text-lg font-semibold text-empire-dark dark:text-empire-cyan mb-2">Key Responsibilities:</h4>
                           <ul className="list-disc list-inside space-y-1 text-empire-dark dark:text-empire-light/90 text-sm">
                               {job.responsibilities.map((resp, i) => <li key={i}>{resp}</li>)}
                           </ul>
                       </div>
                       <div className="mt-4 md:mt-0">
-                          <h4 className="text-lg font-semibold text-empire-dark dark:text-empire-lime mb-2">Qualifications:</h4>
+                          <h4 className="text-lg font-semibold text-empire-dark dark:text-empire-cyan mb-2">Qualifications:</h4>
                           <ul className="list-disc list-inside space-y-1 text-empire-dark dark:text-empire-light/90 text-sm">
                               {job.qualifications.map((qual, i) => <li key={i}>{qual}</li>)}
                           </ul>
@@ -136,7 +136,7 @@ const Careers = () => {
           </p>
           <a
               href="mailto:careers@thecloneempire.com" // Placeholder email
-              className="inline-block bg-empire-lime hover:bg-opacity-80 text-empire-darkest font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300"
+              className="inline-block bg-empire-cyan hover:bg-opacity-80 text-empire-darkest font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300"
           >
               Submit Your Profile
           </a>

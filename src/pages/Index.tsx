@@ -2,7 +2,6 @@ import React, { useEffect, lazy, Suspense } from "react";
 import Layout from "@/components/Layout";
 import Features from "@/components/Features";
 import CinematicSection from "@/components/CinematicSection";
-import AIClonesShowcase from "@/components/AIClonesShowcase";
 import HowItWorks from "@/components/HowItWorks";
 import Experience from "@/components/Experience";
 import { ImportErrorHandler } from "@/components/ImportErrorHandler";
@@ -41,10 +40,6 @@ const Index = () => {
 
       <ErrorBoundary>
         <CinematicSection />
-      </ErrorBoundary>
-
-      <ErrorBoundary>
-        <AIClonesShowcase />
       </ErrorBoundary>
 
       <ErrorBoundary>

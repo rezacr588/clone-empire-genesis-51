@@ -16,8 +16,8 @@ const NotFound = () => {
     <Layout>
       <div className="flex items-center justify-center flex-grow">
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-4 text-empire-dark dark:text-white">404</h1>
-          <p className="text-xl text-empire-medium dark:text-empire-light mb-4">Oops! Page not found</p>
+          <h1 className="text-8xl font-bold text-empire-cyan mb-4 animate-pulse">404</h1>
+          <p className="text-xl text-empire-silver dark:text-empire-light mb-4">Oops! Page not found</p>
           <a href="/" className="text-empire-cyan hover:text-empire-red underline">
             Return to Home
           </a>

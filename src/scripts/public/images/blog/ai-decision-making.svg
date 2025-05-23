@@ -1,0 +1,48 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with dark color -->
+  <rect width="1200" height="630" fill="#06060A" />
+  
+  <!-- Abstract grid lines -->
+  <g stroke="#D9D9D9" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100" />
+    <line x1="0" y1="200" x2="1200" y2="200" />
+    <line x1="0" y1="300" x2="1200" y2="300" />
+    <line x1="0" y1="400" x2="1200" y2="400" />
+    <line x1="0" y1="500" x2="1200" y2="500" />
+    
+    <line x1="100" y1="0" x2="100" y2="630" />
+    <line x1="300" y1="0" x2="300" y2="630" />
+    <line x1="500" y1="0" x2="500" y2="630" />
+    <line x1="700" y1="0" x2="700" y2="630" />
+    <line x1="900" y1="0" x2="900" y2="630" />
+    <line x1="1100" y1="0" x2="1100" y2="630" />
+  </g>
+  
+  <!-- Background elements -->
+  <circle cx="250" cy="450" r="180" fill="#E10600" fill-opacity="0.05" />
+  <circle cx="950" cy="200" r="250" fill="#E10600" fill-opacity="0.07" />
+  
+  <!-- Icon in background -->
+  <g transform="translate(900, 300) scale(8)" opacity="0.15">
+    <path fill="#E10600" d="M23 8c0 1.1-.9 2-2 2a1.7 1.7 0 0 1-.51-.07l-3.56 3.55c.05.16.07.34.07.52 0 1.1-.9 2-2 2s-2-.9-2-2c0-.18.02-.36.07-.52l-2.55-2.55c-.16.05-.34.07-.52.07s-.36-.02-.52-.07l-4.55 4.56c.05.16.07.33.07.51 0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.18 0 .35.02.51.07l4.56-4.55C8.02 9.36 8 9.18 8 9c0-1.1.9-2 2-2s2 .9 2 2c0 .18-.02.36-.07.52l2.55 2.55c.16-.05.34-.07.52-.07s.36.02.52.07l3.55-3.56A1.7 1.7 0 0 1 19 8c0-1.1.9-2 2-2s2 .9 2 2z"/>
+  </g>
+  
+  <!-- Title text -->
+  <text x="100" y="150" font-family="SF Pro Display, system-ui, sans-serif" font-weight="bold" font-size="48" fill="#D9D9D9">
+    AI Decision Making Process
+  </text>
+
+  <!-- Subtitle text -->
+  <text x="100" y="220" font-family="SF Pro Display, system-ui, sans-serif" font-size="32" fill="#D9D9D9" opacity="0.8">
+    The Clone Empire
+  </text>
+  
+  <!-- Main icon -->
+  <g transform="translate(200, 380) scale(5)">
+    <path fill="#E10600" d="M23 8c0 1.1-.9 2-2 2a1.7 1.7 0 0 1-.51-.07l-3.56 3.55c.05.16.07.34.07.52 0 1.1-.9 2-2 2s-2-.9-2-2c0-.18.02-.36.07-.52l-2.55-2.55c-.16.05-.34.07-.52.07s-.36-.02-.52-.07l-4.55 4.56c.05.16.07.33.07.51 0 1.1-.9 2-2 2s-2-.9-2-2 .9-2 2-2c.18 0 .35.02.51.07l4.56-4.55C8.02 9.36 8 9.18 8 9c0-1.1.9-2 2-2s2 .9 2 2c0 .18-.02.36-.07.52l2.55 2.55c.16-.05.34-.07.52-.07s.36.02.52.07l3.55-3.56A1.7 1.7 0 0 1 19 8c0-1.1.9-2 2-2s2 .9 2 2z"/>
+  </g>
+  
+  <!-- Accent borders -->
+  <line x1="100" y1="580" x2="1100" y2="580" stroke="#E10600" stroke-width="3" stroke-opacity="0.6" />
+  <line x1="100" y1="250" x2="500" y2="250" stroke="#E10600" stroke-width="3" stroke-opacity="0.6" />
+</svg>

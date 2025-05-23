@@ -1,120 +1,350 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from "@/components/Layout";
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, X, HelpCircle, ChevronRight, Sparkles } from 'lucide-react';
+import { Button } from "@/components/ui/button";
+import { GoHighLevelCalendar } from '@/components/calendar';
+import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const pricingPlans = [
+// Pricing data structure with feature comparison
+const pricingData = {
+  plans: [
   {
+      id: "starter",
     name: "Starter Empire",
-    price: "$99",
-    frequency: "/month",
+      price: { monthly: 99, annual: 79 },
     description: "For individuals and small teams looking to deploy their first AI agents.",
-    features: [
-      "Up to 3 AI Agent Clones",
-      "Basic Task Automation",
-      "Standard Support",
-      "Access to Core AI Models",
-      "Monthly Performance Reports"
-    ],
-    cta: "Begin Your Reign"
+      cta: "Begin Your Reign",
+      link: "/contact?plan=starter",
+      featured: false
   },
   {
+      id: "growth",
     name: "Expansionist Imperium",
-    price: "$299",
-    frequency: "/month",
+      price: { monthly: 299, annual: 249 },
     description: "For growing businesses aiming to scale their AI workforce and operations.",
-    features: [
-      "Up to 10 AI Agent Clones",
-      "Advanced Task Automation & Workflows",
-      "Priority Support",
-      "Access to Premium AI Models",
-      "Customizable Dashboards & Analytics",
-      "API Access"
-    ],
     cta: "Expand Your Territory",
-    popular: true
+      link: "/contact?plan=growth",
+      featured: true
   },
   {
+      id: "enterprise",
     name: "Galactic Hegemony",
-    price: "Custom",
-    frequency: "",
+      price: { monthly: "Custom", annual: "Custom" },
     description: "For large enterprises requiring bespoke AI solutions and dedicated infrastructure.",
+      cta: "Contact Sales",
+      link: "/contact?plan=enterprise",
+      featured: false
+    }
+  ],
+  featureCategories: [
+    {
+      name: "AI Agents",
+      features: [
+        { name: "AI Agent Clones", starter: "3", growth: "10", enterprise: "Unlimited" },
+        { name: "Task Automation", starter: "Basic", growth: "Advanced", enterprise: "Custom" },
+        { name: "Voice Customization", starter: false, growth: true, enterprise: true },
+        { name: "Persona Development", starter: "Basic", growth: "Advanced", enterprise: "Custom" },
+        { name: "Training Data Capacity", starter: "5 GB", growth: "25 GB", enterprise: "Unlimited" },
+      ]
+    },
+    {
+      name: "Platform",
+      features: [
+        { name: "API Access", starter: false, growth: true, enterprise: true },
+        { name: "Data Export", starter: "CSV only", growth: "CSV, JSON, API", enterprise: "Full Access" },
+        { name: "Custom Integrations", starter: "2", growth: "10", enterprise: "Unlimited" },
+        { name: "Analytics Dashboard", starter: "Basic", growth: "Advanced", enterprise: "Custom" },
+      ]
+    },
+    {
+      name: "Support",
     features: [
-      "Unlimited AI Agent Clones",
-      "Fully Customized AI Solutions",
-      "Dedicated Account Management & Support",
-      "Private Cloud Deployment Option",
-      "Enterprise-grade Security & Compliance",
-      "Tailored SLA & Onboarding"
-    ],
-    cta: "Contact Sales"
+        { name: "Support Level", starter: "Email only", growth: "Priority", enterprise: "Dedicated Rep" },
+        { name: "Response Time", starter: "48 hours", growth: "24 hours", enterprise: "4 hours" },
+        { name: "Onboarding", starter: false, growth: "Standard", enterprise: "White-glove" },
+        { name: "Custom Training", starter: false, growth: false, enterprise: true },
+      ]
+    }
+  ]
+};
+
+// Helper function to render feature value
+const renderFeatureValue = (value) => {
+  if (typeof value === 'boolean') {
+    return value ? 
+      <CheckCircle className="h-5 w-5 text-empire-cyan mx-auto" /> : 
+      <X className="h-5 w-5 text-empire-silver/50 mx-auto" />;
   }
-];
+  return <span className="text-center block text-gray-800 dark:text-white">{value}</span>;
+};
 
 const Pricing = () => {
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">("monthly");
+  const [showFeatureTable, setShowFeatureTable] = useState(false);
+
   useEffect(() => {
     document.title = "Pricing Plans | The Clone Empire";
   }, []);
 
+  // Calculate % discount for annual billing
+  const calculateSavings = () => {
+    const monthlyPrice = pricingData.plans[1].price.monthly;
+    const annualPrice = pricingData.plans[1].price.annual;
+    
+    if (typeof monthlyPrice === 'number' && typeof annualPrice === 'number') {
+      const monthlyTotal = monthlyPrice * 12;
+      const annualTotal = annualPrice * 12;
+      return Math.round((monthlyTotal - annualTotal) / monthlyTotal * 100);
+    }
+    return 0;
+  };
+
   return (
     <Layout>
-      <div className="text-center mb-12 md:mb-16">
-        <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-empire-red mb-4">
-          Pricing That Scales With Your Ambition
-        </h1>
-        <p className="text-lg md:text-xl lg:text-2xl text-empire-dark dark:text-empire-light max-w-3xl mx-auto">
-          Choose the perfect plan to build and expand your AI Clone Empire. Transparent pricing for unparalleled AI agent capabilities.
-        </p>
-      </div>
-
-      <div className="grid lg:grid-cols-3 gap-8 xl:gap-10 items-stretch">
-        {pricingPlans.map((plan, index) => (
-          <div 
-            key={index} 
-            className={`bg-white dark:bg-empire-dark p-6 md:p-8 rounded-xl shadow-xl hover:shadow-2xl transition-shadow duration-300 border border-empire-medium/20 dark:border-empire-light/10 flex flex-col ${plan.popular ? 'border-empire-red dark:border-empire-red ring-2 ring-empire-red' : ''}`}
-          >
-            {plan.popular && (
-              <div className="text-center mb-4 -mt-10">
-                <span className="bg-empire-red text-white text-sm font-semibold px-4 py-1 rounded-full">Most Popular</span>
-              </div>
-            )}
-            <h2 className="text-2xl md:text-3xl font-semibold text-empire-red mb-2">{plan.name}</h2>
-            <p className="text-3xl md:text-4xl font-bold text-empire-dark dark:text-white mb-1">
-              {plan.price}
-              {plan.frequency && <span className="text-lg font-normal text-empire-dark/70 dark:text-empire-light/70">{plan.frequency}</span>}
-            </p>
-            <p className="text-empire-dark/80 dark:text-empire-light/80 mb-6 min-h-[40px]">{plan.description}</p>
-            
-            <ul className="space-y-3 mb-8 flex-grow">
-              {plan.features.map((feature, i) => (
-                <li key={i} className="flex items-start">
-                  <CheckCircle className="h-5 w-5 text-empire-lime mr-2 mt-0.5 flex-shrink-0" />
-                  <span className='text-empire-dark dark:text-empire-light/90'>{feature}</span>
-                </li>
-              ))}
-            </ul>
-            
-            <a
-              href={plan.cta === "Contact Sales" ? "/contact" : "#"}
-              className={`w-full text-center mt-auto inline-block font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-300 ${plan.popular ? 'bg-empire-red hover:bg-empire-red-dark text-white' : 'bg-empire-medium/20 hover:bg-empire-medium/40 dark:bg-empire-light/10 dark:hover:bg-empire-light/20 text-empire-red dark:text-empire-red'}`}
-            >
-              {plan.cta}
-            </a>
-          </div>
-        ))}
-      </div>
-      
-      <div className="text-center mt-16 md:mt-24 bg-white dark:bg-empire-dark p-8 md:p-12 rounded-xl shadow-lg border border-empire-medium/10 dark:border-empire-light/5">
-          <h3 className="text-2xl md:text-3xl font-semibold text-empire-dark dark:text-white mb-4">Need a Custom Solution?</h3>
-          <p className="text-lg text-empire-dark/80 dark:text-empire-light/80 max-w-2xl mx-auto mb-6">
-            If your requirements go beyond our standard plans, or you need specific integrations and dedicated support, our strategists are ready to design a bespoke AI Clone deployment for your enterprise.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-empire-lime hover:bg-opacity-80 text-empire-darkest font-bold py-3 px-8 rounded-lg text-lg transition-colors duration-300"
-          >
-            Discuss Your Project
-          </a>
+      <section className="py-12 relative overflow-hidden">
+        {/* Background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-[30%] -left-[10%] w-[80%] h-[70%] bg-empire-cyan/5 rounded-full blur-[120px] opacity-40"></div>
+          <div className="absolute top-[30%] -right-[10%] w-[70%] h-[50%] bg-empire-canyon/10 rounded-full blur-[100px] opacity-30"></div>
         </div>
+        
+        <div className="container mx-auto px-4 relative z-10 max-w-6xl">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
+            <div className="mb-6 inline-block">
+              <Badge variant="primary" className="mb-4">
+                <Sparkles className="mr-2 h-3.5 w-3.5" />
+                Transparent Pricing
+              </Badge>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight mb-6">
+              <span className="text-empire-light dark:text-empire-light">
+                Pricing That <span className="text-gradient bg-gradient-to-r from-empire-cyan to-empire-canyon">Scales</span> With Your Ambition
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-800 dark:text-empire-silver max-w-3xl mx-auto">
+              Choose the perfect plan to build and expand your AI Clone Empire.
+            </p>
+          </div>
+
+          {/* Billing toggle */}
+          <div className="flex justify-center mb-12">
+            <Tabs 
+              defaultValue="monthly"
+              value={billingPeriod}
+              onValueChange={(v) => setBillingPeriod(v as "monthly" | "annual")}
+              className="bg-white dark:bg-empire-dark rounded-lg p-1 shadow-md border border-empire-medium/20 dark:border-empire-medium/10"
+            >
+              <TabsList className="grid w-full grid-cols-2 h-12 bg-transparent dark:bg-transparent">
+                <TabsTrigger 
+                  value="monthly" 
+                  className="text-base text-gray-700 dark:text-gray-300 data-[state=active]:text-empire-dark dark:data-[state=active]:text-empire-cyan"
+                >
+                  Monthly
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="annual" 
+                  className="text-base text-gray-700 dark:text-gray-300 data-[state=active]:text-empire-dark dark:data-[state=active]:text-empire-cyan"
+                >
+                  Annual <span className="ml-2 text-xs font-normal bg-empire-cyan/10 text-empire-cyan/90 dark:text-empire-cyan px-2 py-0.5 rounded-full">Save {calculateSavings()}%</span>
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+
+          {/* Main pricing cards */}
+          <div className="grid md:grid-cols-3 gap-8 xl:gap-6 items-stretch">
+            {pricingData.plans.map((plan) => (
+              <div 
+                key={plan.id} 
+                className={`
+                  bg-white dark:bg-gradient-to-b dark:from-empire-dark dark:to-empire-darker p-6 md:p-8 rounded-2xl shadow-xl transition-all duration-300 
+                  border border-empire-medium/20 dark:border-empire-medium/10 flex flex-col 
+                  ${plan.featured ? 'border-empire-cyan dark:border-empire-cyan/70 ring-2 ring-empire-cyan/30 transform md:-translate-y-4' : ''}
+                  hover:shadow-2xl hover:scale-[1.02] dark:hover:shadow-empire-cyan/10
+                `}
+              >
+                {plan.featured && (
+                  <div className="text-center mb-4 -mt-12">
+                    <span className="bg-empire-canyon-deep text-empire-light text-sm font-semibold px-5 py-1.5 rounded-full inline-block shadow-lg">
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+                
+                <h2 className={`text-2xl md:text-3xl font-semibold ${plan.featured ? 'text-empire-cyan' : 'text-empire-canyon-deep dark:text-empire-silver'} mb-2`}>
+                  {plan.name}
+                </h2>
+                
+                <div className="mb-6">
+                  <span className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-empire-light">
+                    {typeof plan.price[billingPeriod] === 'number' ? '$' : ''}
+                    {plan.price[billingPeriod]}
+                  </span>
+                  {typeof plan.price[billingPeriod] === 'number' && (
+                    <span className="text-lg font-normal text-gray-600 dark:text-empire-silver ml-1">
+                      /{billingPeriod === 'monthly' ? 'mo' : 'mo, billed annually'}
+                    </span>
+                  )}
+                </div>
+                
+                <p className="text-gray-700 dark:text-empire-silver/80 mb-6">{plan.description}</p>
+            
+                {/* Plan highlights */}
+                <ul className="space-y-3 mb-8 flex-grow">
+                  {pricingData.featureCategories.map(category => 
+                    category.features.slice(0, 1).map((feature, i) => (
+                      <li key={`${category.name}-${i}`} className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-empire-cyan mr-2 mt-0.5 flex-shrink-0" />
+                        <span className='text-gray-800 dark:text-empire-light'>
+                          {feature.name}: <strong>{plan[feature.name.toLowerCase()] || feature[plan.id]}</strong>
+                        </span>
+                      </li>
+                    ))
+                  )}
+                  <li className="flex items-start">
+                    <CheckCircle className="h-5 w-5 text-empire-cyan mr-2 mt-0.5 flex-shrink-0" />
+                    <span className='text-gray-800 dark:text-empire-light'>
+                      Support: <strong>{pricingData.featureCategories[2].features[0][plan.id]}</strong>
+                    </span>
+                  </li>
+                </ul>
+            
+                {/* CTA Button */}
+                {plan.id === 'growth' ? (
+                  <GoHighLevelCalendar 
+                    calendarId="strategy-call"
+                    className="w-full bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-empire-light py-3 px-6 rounded-lg text-lg flex items-center justify-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-empire-canyon"
+                    text={plan.cta}
+                    size="lg"
+                  />
+                ) : (
+                  <Button
+                    className={`w-full py-3 px-6 rounded-lg text-lg ${
+                      plan.id === 'enterprise'
+                        ? 'bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-empire-light'
+                        : 'bg-empire-cyan hover:bg-empire-cyan/90 text-empire-darkest'
+                    }`}
+                    size="lg"
+                    asChild
+                  >
+                    <a href={plan.link} className="flex items-center justify-center gap-2">
+                      {plan.cta} <ChevronRight size={16} />
+                    </a>
+                  </Button>
+                )}
+              </div>
+            ))}
+          </div>
+
+          {/* Feature comparison toggle */}
+          <div className="flex justify-center mt-10">
+            <Button
+              variant="outline"
+              onClick={() => setShowFeatureTable(!showFeatureTable)}
+              className="border-empire-medium/20 dark:border-empire-canyon-deep/20 text-gray-800 dark:text-empire-light hover:bg-empire-cyan/10 dark:hover:bg-empire-cyan/10"
+            >
+              {showFeatureTable ? "Hide Feature Comparison" : "Show Full Feature Comparison"}
+              <ChevronRight className={`ml-1 transform transition-transform ${showFeatureTable ? 'rotate-90' : ''}`} size={16} />
+            </Button>
+          </div>
+
+          {/* Feature Comparison Table */}
+          {showFeatureTable && (
+            <div className="mt-16 overflow-x-auto">
+              <div className="min-w-full inline-block align-middle">
+                <div className="overflow-hidden border border-empire-medium/20 dark:border-empire-medium/10 rounded-xl bg-white dark:bg-empire-dark shadow-md">
+                  <table className="min-w-full divide-y divide-empire-medium/20 dark:divide-empire-medium/10">
+                    <thead>
+                      <tr>
+                        <th scope="col" className="px-6 py-4 text-left text-sm font-medium text-gray-700 dark:text-empire-silver bg-gray-50 dark:bg-empire-darker">
+                          Features
+                        </th>
+                        {pricingData.plans.map(plan => (
+                          <th 
+                            key={plan.id} 
+                            scope="col" 
+                            className={`px-6 py-4 text-center text-sm font-medium ${
+                              plan.featured 
+                                ? 'text-empire-cyan bg-empire-cyan/5 dark:bg-empire-cyan/10' 
+                                : 'text-gray-700 dark:text-empire-silver bg-gray-50 dark:bg-empire-darker'
+                            }`}
+                          >
+                            {plan.name}
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-empire-medium/20 dark:divide-empire-medium/10">
+                      {pricingData.featureCategories.map(category => (
+                        <React.Fragment key={category.name}>
+                          <tr>
+                            <td 
+                              colSpan={4} 
+                              className="px-6 py-3 text-md font-semibold text-gray-800 dark:text-empire-light bg-gray-100 dark:bg-empire-darker/50"
+                            >
+                              {category.name}
+                            </td>
+                          </tr>
+                          {category.features.map((feature, i) => (
+                            <tr 
+                              key={`${category.name}-${feature.name}-${i}`} 
+                              className={i % 2 === 0 ? 'bg-white dark:bg-empire-dark' : 'bg-gray-50 dark:bg-empire-darker/30'}
+                            >
+                              <td className="px-6 py-4 text-sm font-medium text-gray-800 dark:text-empire-silver flex items-center">
+                                {feature.name}
+                                {feature.tooltip && (
+                                  <span className="ml-1.5 inline-block text-gray-400">
+                                    <HelpCircle className="h-4 w-4" />
+                                  </span>
+                                )}
+                              </td>
+                              {pricingData.plans.map(plan => (
+                                <td 
+                                  key={`${category.name}-${feature.name}-${plan.id}`} 
+                                  className={`px-6 py-4 ${
+                                    plan.featured ? 'bg-empire-cyan/5 dark:bg-empire-cyan/10' : ''
+                                  }`}
+                                >
+                                  {renderFeatureValue(feature[plan.id])}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </React.Fragment>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          <div className="mt-16 text-center">
+            <h2 className="text-2xl md:text-3xl font-semibold text-gray-800 dark:text-empire-light mb-3">
+              Ready to build your AI workforce?
+            </h2>
+            <p className="text-gray-600 dark:text-empire-silver mb-8 max-w-2xl mx-auto">
+              Our AI clones can help you automate and scale operations faster than you thought possible. Book a demo to see how.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <GoHighLevelCalendar 
+                calendarId="demo-calendar"
+                className="bg-empire-canyon-deep hover:bg-empire-canyon-deep/90 text-empire-light py-3 px-6 rounded-lg text-base flex items-center hover-lift shadow-lg shadow-empire-canyon-deep/20"
+                text="Schedule Demo"
+                size="lg"
+              />
+              <Button 
+                variant="outline"
+                className="border-empire-medium/40 bg-transparent hover:bg-empire-silver/5 text-empire-dark dark:text-empire-silver py-3 px-6 rounded-lg text-base hover-lift"
+              >
+                Contact Sales
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
     </Layout>
   );
 };

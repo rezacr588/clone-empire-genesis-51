@@ -1,0 +1,44 @@
+<svg width="800" height="800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with dark color -->
+  <rect width="800" height="800" fill="#06060A" />
+  
+  <!-- Abstract grid lines -->
+  <g stroke="#D9D9D9" stroke-opacity="0.05" stroke-width="1">
+    <line x1="0" y1="100" x2="800" y2="100" />
+    <line x1="0" y1="200" x2="800" y2="200" />
+    <line x1="0" y1="300" x2="800" y2="300" />
+    <line x1="0" y1="400" x2="800" y2="400" />
+    <line x1="0" y1="500" x2="800" y2="500" />
+    <line x1="0" y1="600" x2="800" y2="600" />
+    <line x1="0" y1="700" x2="800" y2="700" />
+    
+    <line x1="100" y1="0" x2="100" y2="800" />
+    <line x1="200" y1="0" x2="200" y2="800" />
+    <line x1="300" y1="0" x2="300" y2="800" />
+    <line x1="400" y1="0" x2="400" y2="800" />
+    <line x1="500" y1="0" x2="500" y2="800" />
+    <line x1="600" y1="0" x2="600" y2="800" />
+    <line x1="700" y1="0" x2="700" y2="800" />
+  </g>
+  
+  <!-- Circular background with gradient -->
+  <circle cx="400" cy="300" r="150" fill="#E10600" fill-opacity="0.1" />
+  
+  <!-- Person icon -->
+  <g transform="translate(400, 300) scale(8)">
+    <path fill="#E10600" d="M12 16c2.69 0 5.77 1.28 6 2H6c.2-.71 3.3-2 6-2m0-2c-2.21 0-4 1.79-4 4v2h8v-2c0-2.21-1.79-4-4-4zm0-10C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2z"/>
+  </g>
+  
+  <!-- Name label -->
+  <rect x="150" y="550" width="500" height="120" rx="10" fill="#E10600" fill-opacity="0.1" />
+  
+  <!-- Name text -->
+  <text x="400" y="600" font-family="SF Pro Display, system-ui, sans-serif" font-weight="bold" font-size="36" fill="#D9D9D9" text-anchor="middle">
+    Dr. Eldrin Cortex
+  </text>
+  
+  <!-- Role text -->
+  <text x="400" y="640" font-family="SF Pro Display, system-ui, sans-serif" font-size="24" fill="#D9D9D9" opacity="0.8" text-anchor="middle">
+    Chief AI Strategist
+  </text>
+</svg>

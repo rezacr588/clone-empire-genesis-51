@@ -1,6 +1,6 @@
-# Clone Empire
+# Clone Empire Genesis
 
-A modern React application for an AI agent platform focused on creating and managing autonomous AI clones that can handle sales, support, and operations for businesses.
+A futuristic web application for The Clone Empire, featuring AI agent management and visualization.
 
 ## 🚀 Features
 
@@ -127,3 +127,137 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 👥 Contributors
 
 - Your Name - Creator and maintainer
+
+## Codebase Architecture
+
+The codebase has been refactored for better reusability, maintainability, and reduced code duplication. Below is an overview of the key architectural components:
+
+### Component Structure
+
+```
+src/
+  components/
+    animations/                  # Animation-related components
+      AnimatedArrowRight.tsx     # Individual animated SVG components
+      AnimatedCalendar.tsx
+      AnimatedFallbackIcon.tsx
+      AnimatedTag.tsx
+      AnimatedUser.tsx
+      MotionCard.tsx             # Wrapper for animated cards/sections
+      index.tsx                  # Exports all animation components
+    blog/                        # Blog-specific components
+      BlogPostCard.tsx           # Card for blog posts
+      FeaturedBlogPost.tsx       # Featured blog post component
+      index.tsx                  # Exports all blog components
+    ui/                          # General UI components
+      CallToAction.tsx           # Reusable CTA component
+      GradientBackground.tsx     # Gradient background with variants
+      SectionHeader.tsx          # Section header with title and subtitle
+      button.tsx                 # Button component
+      badge.tsx                  # Badge component
+      index.tsx                  # Exports all UI components
+```
+
+### Reusable Components
+
+#### Animation Components
+
+- **MotionCard**: A versatile wrapper for cards with various animation options.
+  ```tsx
+  <MotionCard 
+    delay={0.3} 
+    hoverEffect="lift"
+    appearAnimation="slide"
+    className="your-class-name"
+  >
+    {children}
+  </MotionCard>
+  ```
+
+- **Animated Icons**: SVG-based icons with Framer Motion animations.
+  ```tsx
+  <AnimatedArrowRight className="h-5 w-5 text-empire-cyan" />
+  ```
+
+#### Blog Components
+
+- **BlogPostCard**: Card display for blog posts.
+  ```tsx
+  <BlogPostCard 
+    post={postData} 
+    onImageError={handleError}
+    imageError={hasError}
+    index={0}
+  />
+  ```
+
+- **FeaturedBlogPost**: Highlighted blog post with enhanced styling.
+  ```tsx
+  <FeaturedBlogPost 
+    post={featuredPost}
+    onImageError={handleImageError}
+    imageError={imageHasError}
+  />
+  ```
+
+#### UI Components
+
+- **SectionHeader**: Consistent section headers throughout the site.
+  ```tsx
+  <SectionHeader 
+    badge="Optional Badge"
+    badgeVariant="primary"
+    title="Section Title"
+    titleHighlight="Title" // Part of title to highlight
+    subtitle="Optional subtitle text"
+    center={true}
+  />
+  ```
+
+- **GradientBackground**: Background with animated gradients in various styles.
+  ```tsx
+  <GradientBackground variant="cyan" animated={true}>
+    {children}
+  </GradientBackground>
+  ```
+
+- **CallToAction**: Standard CTA sections with calendar integration.
+  ```tsx
+  <CallToAction
+    title="Your CTA Title"
+    description="Description text goes here"
+    calendarId="your-calendar-id"
+    buttonText="Schedule Now"
+  />
+  ```
+
+### Best Practices
+
+1. **Imports**: Use the index files to import components:
+   ```tsx
+   import { BlogPostCard, FeaturedBlogPost } from '@/components/blog';
+   import { SectionHeader, GradientBackground } from '@/components/ui';
+   ```
+
+2. **Type Safety**: Component props are typed with TypeScript interfaces.
+
+3. **Customization**: Components accept className props for styling overrides.
+
+4. **Animation Consistency**: Use MotionCard for consistent animation behavior.
+
+## Development
+
+1. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+2. **Start development server**:
+   ```bash
+   npm run dev
+   ```
+
+3. **Build for production**:
+   ```bash
+   npm run build
+   ```
