@@ -40,7 +40,7 @@ const CTA = () => {
               Deploy Your <span className="text-gradient bg-gradient-to-r from-empire-silver to-empire-canyon">Autonomous AI Agents</span>
             </h2>
             
-            <p className="text-base md:text-lg text-empire-medium max-w-2xl mb-8">
+            <p className="text-base md:text-lg text-empire-light max-w-2xl mb-8">
               Join the businesses leveraging AI voice agents to automate sales, support, and operations 24/7/365 without human limitations.
             </p>
             
@@ -60,7 +60,7 @@ const CTA = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-empire-silver">Autonomous Decision Making</h4>
-                  <p className="text-sm text-empire-medium/90">Agents that understand context and take action</p>
+                  <p className="text-sm text-empire-light/90">Agents that understand context and take action</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -69,7 +69,7 @@ const CTA = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-empire-silver">Multi-System Integration</h4>
-                  <p className="text-sm text-empire-medium/90">Works with your existing tools and platforms</p>
+                  <p className="text-sm text-empire-light/90">Works with your existing tools and platforms</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -78,7 +78,7 @@ const CTA = () => {
                 </div>
                 <div>
                   <h4 className="font-medium text-empire-silver">No-Code Configuration</h4>
-                  <p className="text-sm text-empire-medium/90">Easy setup without technical expertise</p>
+                  <p className="text-sm text-empire-light/90">Easy setup without technical expertise</p>
                 </div>
               </div>
             </div>

@@ -93,13 +93,13 @@ const Features = () => {
         <div className="flex flex-col md:flex-row items-start gap-8">
           <div className="w-full md:w-2/3">
             <h3 className="text-xl md:text-2xl font-medium text-empire-silver mb-3">Agentive Ecosystem</h3>
-            <p className="text-empire-medium/90 text-sm mb-4">
+            <p className="text-empire-light/90 text-sm mb-4">
               Our agents don't work in isolation. They communicate with each other, share context, and collaborate to achieve your goals efficiently.
             </p>
             
             <div className="flex flex-wrap gap-3 mt-5">
               {["Agent-to-agent communication", "Continuous learning", "Human-in-the-loop controls"].map((feature, i) => (
-                <div key={i} className="text-xs bg-empire-darkest rounded-full px-3 py-1.5 border border-empire-silver/10 text-empire-medium">
+                <div key={i} className="text-xs bg-empire-darkest rounded-full px-3 py-1.5 border border-empire-silver/10 text-empire-light">
                   {feature}
                 </div>
               ))}
